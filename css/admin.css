@@ -1,0 +1,76 @@
+/*Font*/
+body{font-size:12px;font-family:"Trebuchet MS",Verdana, Geneva, Arial, Helvetica, sans-serif;}
+#footer a{ font-size:10px;}
+#ctndx h2{font-size:20px;color:#3f250e;}
+#ctndx {font-size:11px;color:#323232;}
+#ctndx table{font-size:11px;color:#323232;}
+th{font-size:15px;color:#3f250e;border-bottom:1px solid #ccc;}
+
+
+/*Generali*/
+#ctndx{padding-left: 30px;}
+body{background-color:#000;margin:0;padding:0;}
+img{border:0}
+form{margin:0;padding:0;}
+form input{margin:0;padding:0;}
+.sx{float:left}
+.dx{float:right}
+.dividi{clear:both}
+
+
+/*Struttura*/
+#page{display:block;width:1100px; height:615px; margin:auto; text-align:left; border:1px solid #333;}
+#ctnsx{width:210px; height:615px; background:url(../images/back_sx.jpg) 0 bottom no-repeat; float:left;}
+#ctndx{width:860px; height:615px; background-color:#c1bfa8; float:left; margin:0;}
+
+/*Header*/
+h1{width:210px; margin:0; padding:0;}
+h1 a{width:210px; height:210px; background:url(../images/logo.gif) 0 0 no-repeat; display:block;}
+h1 a span{ display:none;}
+
+/*Menu*/
+ul#menu{list-style-type:none; float:left; margin:0; padding:10px 0 0 15px;}
+ul#menu li{width:173px; float:left;}
+ul#menu li a{ display:block; width:173px; height:30px; text-decoration:none; margin:0; padding: 2 0 0 15;}
+
+a.menu_blank{display:block; width:173px; height:30px; background:url(../images/menu_blank.gif) 0 0 no-repeat; font-size: 22px; color: #333; text-decoration: none;}
+a.menu_blank:hover{display:block; width:173px; height:30px; background:url(../images/menu_blank.gif) 0 0 no-repeat;}
+
+
+/*Content*/
+#ctndx h2{ margin:20px 0 5px 20px}
+
+/*Form*/
+#ctndx form{height: 435px; width:665px; margin:25px 0 0 0px;}
+#ctndx form table td,#ctndx form table td a{color:#3f250e}
+#ctndx form input{height: 20px; width:270px;}
+#ctndx form input.invia{width:73px; height:21px;background: url(../images/btn_invia.gif) 0 0  no-repeat; border:0; margin:0; padding:0;}
+#ctndx form input.checkbox{width:13px; height:13px;}
+
+/*Validation*/
+.panelContent {border-right: #999 1px solid; padding-right: 1em; border-top: #999 1px solid; padding-left: 1em; padding-bottom: 1em; margin: 0em; border-left: #999 1px solid; padding-top: 1em; border-bottom: #999 1px solid}
+.inputError {border-right: #FF8000 1px solid; border-top: #FF8000 1px solid; margin: 0px; border-left: #FF8000 1px solid; border-bottom: #FF8000 1px solid; color: #FF8000; background-color: #FFFFD7}
+.innerError {background-image: url(../images/invalid.gif); background-position: left top;background-repeat: no-repeat;padding:1px 0 0 20px;color: #ff0707}
+.innerHelp {background-image: url(../images/valid.gif); color: #fff; font-size:10px;}
+.buttonstyle {border: #FF8000 1px solid;padding: 2px;margin: 0px;background-position: center;background-color: #EDEBE0;color: #000000;text-align: center;text-decoration: none;font-weight: bold;font-family: verdana;cursor: hand;}
+.buttonstyledisabled {border: #aaaaaa 1px solid;padding: 2px;margin: 0px;background-position: center;background-color: #EDEBE0;color: #aaaaaa;text-align: center;text-decoration: none; font-weight: bold;font-family: verdana;cursor: hand;}
+
+/*Tab*/
+
+#menutab{margin:60px 0 0 0; padding:0; float:right; list-style-type:none;height: 40px; width:290px;}
+#menutab li{margin:0; padding:0; float:right;}
+#menutab li a span{ display:none;}
+#tab1.on{ width:138px; height:40px; background: url(../images/generale.gif) 0 0 no-repeat; display:block;}
+#tab2.on{ width:120px; height:40px; background: url(../images/tecnico.gif) 0 0 no-repeat; display:block;}
+#tab1.off{ width:138px; height:40px; background: url(../images/generale_off.gif) 0 0 no-repeat; display:block;}
+#tab2.off{ width:120px; height:40px; background: url(../images/tecnico_off.gif) 0 0 no-repeat; display:block;}
+
+img.regolamento{ margin:-3px 0 0 90px}
+
+#ctntab {position:relative;width:760px;height: 464px; float:left; margin:0; padding:0;}
+#texttab1 {position:absolute;top:0;left:0; visibility: visible;}
+#texttab1 p{margin:0; padding:0;}
+#texttab2 {position:absolute;top:0;left:0; visibility: hidden;}
+#texttab2 p{margin:0; padding:0;}
+
+
