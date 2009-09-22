@@ -1,5 +1,4 @@
 <?php
-require_once(LIB_PATH.DS.'database.php');
 
 class Agency extends DatabaseObject{
 	protected static $table_name='agencies';
@@ -79,7 +78,12 @@ class Agency extends DatabaseObject{
 	//return all colunms
 	private static function instantiate($record){
 		$object  			= new self;
-		
+		/*$object->id			= $record['id'];
+		$object->username	= $record['username'];
+		$object->password	= $record['password'];
+		$object->first_name = $record['first_name'];
+		$object->last_name	= $record['last_name'];
+		return $object;*/
 		//loop the colunms in table 
 		foreach($record as $attribute => $value){
 			if($object->has_attribute($attribute)){
@@ -138,9 +142,12 @@ class Agency extends DatabaseObject{
 		$sql .= ") VALUES ('";
 		$sql .= join("', '",array_values($attributes));
 		$sql .= "')";
+		
 		//run sql
 		if($database->query($sql)){
-			$this->id=$database->insert_id();
+			$this->id=$database->insert_id($sql);
+			//echo $database->insert_id($sql);
+		//exit;
 			return true;
 			}else{
 			return false;

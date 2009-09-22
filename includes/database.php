@@ -63,6 +63,7 @@ class MySqlDatabase{
 	//db-neutral method
 	public function affected_rows($result_set){
 		return mysql_affected_rows($this->connection);
+		
 	}
 	
 	//cleans variables for making it ready sql i.e escapes etc

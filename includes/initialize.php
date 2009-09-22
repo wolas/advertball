@@ -5,11 +5,11 @@
  * (\for Window, / for unix)
  */
 define('DS',DIRECTORY_SEPARATOR);
-define('SITE_ROOT', getenv("DOCUMENT_ROOT").DS."advertball");
-//define('SITE_ROOT', getenv("DOCUMENT_ROOT"));
-define('LIB_PATH',SITE_ROOT.DS.'includes');
+define('SITE_ROOT',getenv("DOCUMENT_ROOT").DS.'advertball');
+define('LIB_PATH',SITE_ROOT.DS.'/public/includes');
 
-
+//echo getenv("DOCUMENT_ROOT") ."<br />";
+//echo realpath(basename(getenv("SCRIPT_NAME")));
 //must keep this order
 require_once(LIB_PATH.DS."config.php");
 require_once(LIB_PATH.DS."functions.php");

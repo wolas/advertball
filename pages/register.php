@@ -29,6 +29,7 @@
 		}else{
 		if($_POST['legal_term']==1){$agree="Si";}else{$agree="No";} 
 		
+		
 		$body = "Pre-iscrizione effettuata con successo.<br/>" .
 		    "<b>Benvenuto nel mondo Advertball!</b><br/>" .
 		    "A breve vi saranno comunicati via email i dettagli su come completare la registrazione.<br/>" . 
@@ -41,7 +42,7 @@
 				"<b>Regione:</b> " . $_POST['state'] . "<br />" .
 				"<b>CAP:</b> " . $_POST['postcode'] . "<br />" .
 				"<b>Nome:</b> " . $_POST['contact_name'] . "<br />" .
-				"<b>Tlf:</b> " .  $_POST['contact_telephone'] . "<br />" .
+				"<b>Tel:</b> " .  $_POST['contact_telephone'] . "<br />" .
 				"<b>Email:</b> " . $_POST['contact_email']  . "<br />" .
 				"<b>Partiva IVA:</b> " . htmlspecialchars($_POST['partita_iva']) . "<br />" .
 				 
@@ -49,14 +50,14 @@
 				"<b>Password:</b> " . $_POST['password'] . "<br /><br />" .
 				"<a href=\"http://www.advertball.it\">http://www.advertball.it</a>";
 		  
-    $to = array($_POST['contact_email'], "info@advertball.it");
+    $to =$_POST['contact_email']; //array($_POST['contact_email'], "info@advertball.it");
     $subject = 'Advertball Confirmation';
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     $headers .= 'From: AdvertBall@advertball.it' . "\r\n" . 'Reply-To: info@advertball.it';
     
     $mail_sent = @mail( $to, $subject, $body, $headers );
-		  
+		//redirect_to("registration_complete.html");
 		if($mail_sent){
 			redirect_to("registration_complete.html");
 		}
@@ -232,6 +233,8 @@
   						</div>								
   					</div>
   				</div>
+  				<br/>
+  				<br/>
   				<br/>
   				<br/>
   				<div id="footer"><a href="faq.html">Faq</a> &bull; <a href="contact.html">Contatti</a></div>

@@ -25,7 +25,6 @@ form input{margin:0;padding:0;}
 h1{width:210px; height:210px; margin:0; padding:0;}
 h1 a{width:210px; height:210px; background:url(../images/logo.gif) 0 0 no-repeat; display:block;}
 h1 a span{ display:none;}
-h2 img{padding-left: 20px;}
 
 /*Menu*/
 ul#menu{list-style-type:none; float:left; margin:0; padding:10px 0 0 15px;}
@@ -60,7 +59,7 @@ a.menu6:hover{display:block; width:173px; height:30px; background:url(../images/
 a.menu6on{display:block; width:173px; height:30px; background:url(../images/menu6on.gif) 0 0 no-repeat;}
 
 /*Scroll*/
-#scroll-container {position: relative;height: 425px; width:665px; margin:25px 0 0 90px;}
+#scroll-container {position: relative;height: 495px; width:665px; margin:25px 0 0 90px;}
 #content{position: absolute;top: 0;left: 0; width: 605px;overflow: hidden;}
 #content p.last{ padding-bottom:50px}
 #track {position: absolute;	left: 635px;top: 6px;width: 8px;height: 418px;background:url(../images/back_scroll.gif) 0 0 repeat-y;}
@@ -68,7 +67,7 @@ a.menu6on{display:block; width:173px; height:30px; background:url(../images/menu
 #button-up {position: absolute;top: 0;left: 635px;width: 8px;height: 6px; background:url(../images/top_scroll.gif) 0 0 no-repeat;}
 #button-down {position: absolute;top: 424px;left: 635px;width: 8px;height: 6px; background:url(../images/bottom_scroll.gif) 0 0 no-repeat;}
 
-#scroll-container2 {position: relative;height: 425px; width:665px; margin:25px 0 0 90px;}
+#scroll-container2 {position: relative;height: 445px; width:665px; margin:25px 0 0 90px;}
 #content2{position: absolute;top: 0;left: 0; width: 605px;overflow: hidden;}
 #content2 p.last{ padding-bottom:50px}
 #track2 {position: absolute;	left: 635px;top: 6px;width: 8px;height: 418px;background:url(../images/back_scroll.gif) 0 0 repeat-y;}
@@ -77,7 +76,7 @@ a.menu6on{display:block; width:173px; height:30px; background:url(../images/menu
 #button-down2 {position: absolute;top: 424px;left: 635px;width: 8px;height: 6px; background:url(../images/bottom_scroll.gif) 0 0 no-repeat;}
 
 /*Content*/
-#ctndx h2{margin:20px 0 20px 0px}
+#ctndx h2{ margin:20px 0 20px 20px}
 p{ margin-bottom:10px;}
 
 /*Footer*/

@@ -1,30 +1,38 @@
 <?php
-require_once(LIB_PATH.DS.'database.php');
 
 class Team extends DatabaseObject{
 	protected static $table_name='teams';
-	protected static $db_fields=array('id','name', 'agency_id', 'coach_name', 'coach_email', 'coach_telephone');
+	protected static $db_fields=array('id','fid','name','colour1','colour2','logo','coach_name','coach_telephone','coach_email','assistant_name','assistant_telephone','assistant_email');
 	public $id;
+	public $fid;
 	public $name;
-	public $agency_id;
+	public $colour1;
+	public $colour2;
+	public $logo;
 	public $coach_name;
-	public $coach_email;
 	public $coach_telephone;
+	public $coach_email;
+	public $assistant_name;
+	public $assistant_telephone;
+	public $assistant_email;	
 	
-	//user details
-	public function details(){
-		//TODO: needs to check if values chked
-		$details  = "Name: "    . $this->name . "<br />";
-		$details .= "Agency: "    . $this->agency_id . "<br />";
-		$details .= "Coach Name: "  . $this->coach_name . "<br />";
-		$details .= "Coach Email: "   . $this->coach_email . "<br />";
-		$details .= "Coach Telephone: " 		. $this->coach_telephone . "<br />";
-		return $details;
-	}
+	
 	//autheticates 
 	public static function authenticate($username='',$password=''){
-		return false;
+		global $database;
+		$username=$database->escape_value($username);
+		$password=$database->escape_value($password);
+		//query
+		$sql  = "SELECT * FROM users ";
+		$sql .= "WHERE username = '{$username}' ";
+		$sql .= "AND password = '{$password}' ";
+		$sql .= "LIMIT 1";
+		
+		$result_array = self::find_by_sql($sql);
+		return !empty($result_array) ? array_shift($result_array) : false;
 	}
+	
+
 	
 	//common DB methods - can be placed inside DatabaseObject class in PHP 5.3
 	//returns all records
@@ -120,9 +128,12 @@ class Team extends DatabaseObject{
 		$sql .= ") VALUES ('";
 		$sql .= join("', '",array_values($attributes));
 		$sql .= "')";
+		
 		//run sql
 		if($database->query($sql)){
-			$this->id=$database->insert_id();
+			$this->id=$database->insert_id($sql);
+			//echo $database->insert_id($sql);
+		//exit;
 			return true;
 			}else{
 			return false;
