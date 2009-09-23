@@ -1,7 +1,7 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
-	if(!$session->is_logged_in()){redirect_to("../login.php");}
+	if(!$session->is_logged_in()){redirect_to("team_login.php");}
 	
 	$new_record = $_GET['id'] ? false : true;
 	
@@ -29,7 +29,7 @@
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>:: Agencies ::</title>
+    <title>:: Team Registration ::</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="Content-Language" content="it"/>
     <meta name="script" http-equiv="Content-Script-Type" content="text/javascript"/>

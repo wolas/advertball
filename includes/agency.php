@@ -31,7 +31,7 @@ class Agency extends DatabaseObject{
 		$username=$database->escape_value($username);
 		$password=$database->escape_value($password);
 		//query
-		$sql  = "SELECT * FROM users ";
+		$sql  = "SELECT * FROM " . self::$table_name ." ";
 		$sql .= "WHERE username = '{$username}' ";
 		$sql .= "AND password = '{$password}' ";
 		$sql .= "LIMIT 1";
