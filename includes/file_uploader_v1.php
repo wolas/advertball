@@ -8,12 +8,15 @@
 		public $type;
 		public $size;
 		public $caption;
-		
+		public $maxFiles=3;
 		private $temp_path;
+		
 		protected $upload_dir="uploads";
 		
-		public $errors=array();
+		private $files = array();
 		
+		//SITE_ROOT . DS . $this->upload_dir .DS. $this->filename
+		public $errors=array();
 		protected $upload_errors = array(
 			// http://www.php.net/manual/en/features.file-upload.errors.php
 			UPLOAD_ERR_OK 			 => "No errors.",
@@ -26,10 +29,48 @@
 		 	UPLOAD_ERR_EXTENSION 	 => "File upload stopped by extension."
 		);
 		
+		
+		
 		//Common DB methods - can be placed inside DatabaseObject class in PHP 5.3
 	
 		//Pass in $_FILE(['userfile']) as an argument
-		public function attach_file($file) {
+		public function attach_file($files) {
+			//perform error checking on the form parameters
+			if(!$files || empty($files) || !is_array($files)) {
+				//error: nothing uploaded or wrong argument usage
+				$this->errors[] = "No file was uploaded.";
+				return false;
+				}elseif($file['error'] != 0) {
+					 // error: report what PHP says went wrong
+				  	$this->errors[] = $this->upload_errors[$file['error']];
+				  	return false;
+				}else{
+					
+					while(list($key,$value) = each($_FILES['userfile']['name'])){
+						if(!empty($value)){
+							$filename = $value;
+							$files[] = $filename; 
+						
+							$filename= SITE_ROOT . DS . $this->upload_dir . DS . str_replace(" ","_",$filename);// Add _ inplace of blank space in file name, you can remove this line
+		 					
+							//echo $filename."<br />";//$_FILES['userfile']['name'][$key];
+					     	
+							//echo $_FILES['userfile']['tmp_name'][$key];
+							// echo "<br>";
+							//copy($_FILES['userfile']['tmp_name'][$key], $upload_dir);
+							//echo $_FILES['userfile']['tmp_name'][$key];
+							move_uploaded_file($_FILES['userfile']['tmp_name'][$key],$filename);
+							//unset($_FILES['userfile']['tmp_name'][$key]);
+							//chmod("$filename",0777);
+							//return true;
+							}else{
+							echo $_FILES['userfile'];
+						}
+					}
+					
+		
+			
+			/*
 			// Perform error checking on the form parameters
 			if(!$file || empty($file) || !is_array($file)) {
 				 // error: nothing uploaded or wrong argument usage
@@ -45,7 +86,7 @@
 				  $this->filename   = basename($file['name']);
 				  $this->type       = $file['type'];
 				  $this->size       = $file['size'];
-				return true;
+				return true;*/
 			}
 		}
 		
@@ -56,6 +97,8 @@
 				// Really just to update the caption
 				//$this->update();
 			} else {
+				
+				
 				// Make sure there are no errors
 				// Can't save if there are pre-existing errors
 			  	if(!empty($this->errors)) { return false; }
@@ -66,6 +109,10 @@
 					return false;
 				}
 			
+			// move the file 
+				echo $this->filename;
+				exit();
+				
 			  	// Can't save without filename and temp location
 			  	if(empty($this->filename) || empty($this->temp_path)) {
 			    	$this->errors[] = "The file location was not available.";
@@ -82,6 +129,8 @@
 			  	}
 			
 				// move the file 
+				//echo count($this->filename);
+				exit();
 				if(move_uploaded_file($this->temp_path, $target_path)) {
 					//success
 					//save details to the database

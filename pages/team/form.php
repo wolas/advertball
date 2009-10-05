@@ -5,22 +5,49 @@
 ?>
 
 <?php
+	
+	
 	if(isset($_POST['commit'])){
-	  $team = new Team();
-	  
-	  
+	  	$team = new Team();
 		$attributes = array();
 		$team->name = $_POST['name'];
 		$team->colour1 = $_POST['colour1'];
 		$team->colour2 = $_POST['colour2'];
 		$team->coach_name = $_POST['coach_name'];
-    $team->coach_email = $_POST['coach_email'];
-    $team->coach_telephone = $_POST['coach_telephone'];
-    $team->assistant_name = $_POST['assistant_name'];
-    $team->assistant_email = $_POST['assistant_email'];
-    $team->assistant_telephone = $_POST['assistant_telephone'];
-    $team->agency_id = $session->user_id;
+    	$team->coach_email = $_POST['coach_email'];
+    	$team->coach_telephone = $_POST['coach_telephone'];
+    	$team->assistant_name = $_POST['assistant_name'];
+    	$team->assistant_email = $_POST['assistant_email'];
+    	$team->assistant_telephone = $_POST['assistant_telephone'];
+   	 	$team->agency_id = $session->user_id;
 
+		/*
+		 * @FileUploader - class to upload files 
+		 */
+		$max_file_size = 1048576;//max = 1mb
+		$_file = new FileUploader();
+		$_file->attach_file($_FILES['userfile']);
+		//allow only jpeg/gif
+		if($_file->type == "image/gif" || $_file->type == "image/jpeg"){
+			$team->logo = $_file->filename;
+			}else{	
+			echo "Only gif or jpeg allowed";
+			exit;
+			
+		}
+		//updates the DB 
+		if($_file->save()) {
+			// Success
+    		$session->message("Photograph uploaded successfully.");
+			//redirect_to('list_photos.php');
+			
+			} else {
+			// Failure
+     		$message = join("<br />", $_file->errors);
+		}
+		
+		
+		
 		if($team->create()){
 		  redirect_to("show.php?id=".$team->id);
 		}else{
@@ -29,6 +56,7 @@
 		}
 		
 	}
+
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -77,7 +105,7 @@
     			<div id="ctndx">
     				<h2>New team</h2>
   				
-  					<form name="_form" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
+  					<form name="_form" enctype="multipart/form-data" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
             	<table>
             		<tr>
             			<td>Name:</td>
@@ -123,6 +151,13 @@
             			<td>Assistant Telephone:</td>
             			<td><input id="assistant_telephone" name="assistant_telephone" size="30" type="text"value="<?php echo $team->assistant_telephone;?>" /></td>
             		  <td><span id="errorsDiv_assistant_telephone"></span></td>
+            		</tr>
+					<tr>
+            			<td>Logo :</td>
+            			<td><input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>" />
+	    				<span>Payslip: <input type="file" name="userfile" />
+			</td>
+            		  <td>&nbsp;</td>
             		</tr>
             		<tr>
             			<td>&nbsp;</td>
