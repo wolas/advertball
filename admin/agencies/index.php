@@ -5,7 +5,7 @@
   //1. the current page number($current_page)
   $page=!empty($_GET['page']) ? (int) $_GET['page'] : 1;
   //2. records per page($per_page)
-  $per_page=10;
+  $per_page=8;
   //3. total record count($total_count)
   $total_count = Agency::count_all();
   //all records -
