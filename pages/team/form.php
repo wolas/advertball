@@ -49,7 +49,8 @@
 		
 		
 		if($team->create()){
-		  redirect_to("show.php?id=".$team->id);
+		  redirect_to("show.php");
+		  $session->save_team_id($team);
 		}else{
 		  $message = "Unable to insert data";	  
 		  redirect_to("form.php");
@@ -103,7 +104,7 @@
     				</ul>
     			</div>
     			<div id="ctndx">
-    				<h2>New team</h2>
+    				<h2><?php echo $session->agency_id ?></h2>
   				
   					<form name="_form" enctype="multipart/form-data" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
             	<table>

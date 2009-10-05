@@ -2,11 +2,12 @@
 
 class Player extends DatabaseObject{
 	protected static $table_name='players';
-	protected static $db_fields=array('id', 'name', 'surname', 'team_id');
+	protected static $db_fields=array('id', 'name', 'surname', 'team_id', 'email');
 	public $id;
 	public $team_id;
 	public $name;	
 	public $surname;
+	public $email;
 	
 	//common DB methods - can be placed inside DatabaseObject class in PHP 5.3
 	//returns all records

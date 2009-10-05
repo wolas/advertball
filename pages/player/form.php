@@ -1,8 +1,18 @@
+<?php 
+	ob_start();
+	require_once("../../includes/initialize.php");
+	if(!$session->is_logged_in()){redirect_to("login.php");}
+?>
+
 <?php
+  $team = Agency::find_by_id($session->agency_id)->team();
+
 	if(isset($_POST['commit'])){
 	  $player = new Player();
 		$player->name = $_POST['name'];
 	  $player->surname = $_POST['surname'];
+	  $player->email = $_POST['email'];
+	  $player->team_id = $team->id;
 
 		if($player->create()){
 		  redirect_to("show.php?id=".$player->id);
@@ -32,6 +42,8 @@
         var rules=new Array();
         rules[0]='name|required';
         rules[1]='surname|required';
+        rules[2]='email|email';
+        rules[3]='email|required';
     </script>
 </head>
 <body>
@@ -50,7 +62,7 @@
     				</ul>
     			</div>
     			<div id="ctndx">
-    				<h2>Player</h2>
+    				<h2>Player for team <?php echo $team->name ?></h2>
   				
   					<form name="_form" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
             	<table>
@@ -65,8 +77,13 @@
             		  <td><span id="errorsDiv_surname"></span></td>
             		</tr>
             		<tr>
+            			<td>Email:</td>
+            			<td><input id="email" name="email" size="30" maxlength="30" type="text" value="<?php echo $player->email;?>"/></td>
+            		  <td><span id="errorsDiv_email"></span></td>
+            		</tr>
+            		<tr>
             			<td>&nbsp;</td>
-            			<td><input id="commit" name="commit" class="buttonstyle" type="submit" value="<?php echo $new_record ? 'save' : 'udpate'; ?>" /></td>
+            			<td><input id="commit" name="commit" class="buttonstyle" type="submit" value="save" /></td>
             		</tr>
             	</table>
             </form>

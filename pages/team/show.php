@@ -2,8 +2,7 @@
 	ob_start();
 	require_once("../../includes/initialize.php");
 	if(!$session->is_logged_in()){redirect_to("team_login.php");}
-	
-	$team = Team::find_by_id($_GET['id']);
+	$team = Agency::find_by_id($session->agency_id)->team();
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,7 +54,9 @@
   					<div id="button-up"></div>
   					<div id="button-down"></div>
   					<div id="content">
-						  
+						  <p>
+						    <?php echo $session->team_id; ?>
+						  </p>
 						  <table>
             		<tr>
             			<td>Name:</td>
@@ -94,7 +95,8 @@
             			<td><?php echo $team->assistant_telephone;?></td>
             		</tr>
             	</table>
-						  
+						  <br/>
+						  <a href="../player/form.php">Manage players</a>
   						<p class="last">&nbsp;</p>
   					</div>
   				</div>
