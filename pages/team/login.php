@@ -16,9 +16,8 @@
 		
 		if($agency){
 			$session->login($agency);
-			$session->agency_id = $agency->id;
-			redirect_to("form.php");
-			}else{
+			$agency->team() ? redirect_to("show.php") : redirect_to("form.php");
+		}else{
 			//username/password not found
 			$message = "Username or Password incorrect!";
 		}

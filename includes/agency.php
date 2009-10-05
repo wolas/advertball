@@ -15,6 +15,12 @@ class Agency extends DatabaseObject{
 	public $username;
 	public $password;	
 	
+	
+	public function team(){
+	  $sql = "SELECT * FROM teams WHERE agency_id = '" . $this->id . "' LIMIT 1";
+	  return array_shift(Team::find_by_sql($sql));
+	}
+	
 	//user details
 	public function details(){
 		//TODO: needs to check if values chked

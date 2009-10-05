@@ -19,10 +19,11 @@
     $team->assistant_name = $_POST['assistant_name'];
     $team->assistant_email = $_POST['assistant_email'];
     $team->assistant_telephone = $_POST['assistant_telephone'];
-    $team->agency_id = $session->user_id;
+    $team->agency_id = $session->agency_id;
 
 		if($team->create()){
-		  redirect_to("show.php?id=".$team->id);
+		  redirect_to("show.php");
+		  $session->save_team_id($team);
 		}else{
 		  $message = "Unable to insert data";	  
 		  redirect_to("form.php");
@@ -75,7 +76,7 @@
     				</ul>
     			</div>
     			<div id="ctndx">
-    				<h2>New team</h2>
+    				<h2><?php echo $session->agency_id ?></h2>
   				
   					<form name="_form" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
             	<table>
