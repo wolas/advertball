@@ -7,6 +7,7 @@
    		private $logged_in;
 		public $user_id;
 		public $message;
+		public $agency_id;
 		
    		function __construct(){
    			session_start();
@@ -32,7 +33,7 @@
 		}
 		
 		//logout
-		public function logout($user){
+		public function logout(){
 			// check DB if inputted username/password
 			unset($_SESSION['user_id']);
 			unset($this->user_id);

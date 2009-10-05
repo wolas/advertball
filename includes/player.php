@@ -1,42 +1,12 @@
 <?php
 
-class Team extends DatabaseObject{
-	protected static $table_name='teams';
-	protected static $db_fields=array('id','agency_id','name','colour1','colour2','logo','coach_name','coach_telephone','coach_email','assistant_name','assistant_telephone','assistant_email');
+class Player extends DatabaseObject{
+	protected static $table_name='players';
+	protected static $db_fields=array('id', 'name', 'surname', 'team_id');
 	public $id;
-	public $agency_id;
-	public $name;
-	public $colour1;
-	public $colour2;
-	public $logo;
-	public $coach_name;
-	public $coach_telephone;
-	public $coach_email;
-	public $assistant_name;
-	public $assistant_telephone;
-	public $assistant_email;	
-	
-	
-	public static function agency(){
-	  return Agency::find_by_id(self::$agency_id);
-	}
-	
-	//autheticates 
-	public static function authenticate($username='',$password=''){
-		global $database;
-		$username=$database->escape_value($username);
-		$password=$database->escape_value($password);
-		//query
-		$sql  = "SELECT * FROM users ";
-		$sql .= "WHERE username = '{$username}' ";
-		$sql .= "AND password = '{$password}' ";
-		$sql .= "LIMIT 1";
-		
-		$result_array = self::find_by_sql($sql);
-		return !empty($result_array) ? array_shift($result_array) : false;
-	}
-	
-
+	public $team_id;
+	public $name;	
+	public $surname;
 	
 	//common DB methods - can be placed inside DatabaseObject class in PHP 5.3
 	//returns all records

@@ -156,7 +156,6 @@
 	</script>
  </head>
   <body>
-
   <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td align="center" valign="middle">
@@ -172,15 +171,13 @@
   				</ul>
   			</div>
   			<div id="ctndx">
-  				<h2 class="sx"><img src="../images/iscrizione.gif" alt="iscrizione" /></h2>
-  				<div id="ctntab">
-  					<div class="texttab" id="texttab1">
-  						<div id="scroll-container">
-  							<div id="track"><div id="handle"></div></div>
-  							<div id="button-up"></div>
-  							<div id="button-down"></div>
-  							<div id="content">
-                  <h2>Istruzioni</h2>
+  				<h2><img src="../images/iscrizione.gif" alt="iscrizione" /></h2>
+  				<div id="scroll-container">
+  					<div id="track"><div id="handle"></div></div>
+  					<div id="button-up"></div>
+  					<div id="button-down"></div>
+  					<div id="content">
+				<h2>Istruzioni</h2>
                   
                   <p>Per partecipare ad Advertball 2009 – 2010, occorre:</p>                  
                   <br/>
@@ -271,15 +268,9 @@
                     		</tr>
                     	</table>
                     </form>
-  								<p class="last">&nbsp;</p>
-  							</div>
-  						</div>								
+					<br /><br />
   					</div>
   				</div>
-  				<br/>
-  				<br/>
-  				<br/>
-  				<br/>
   				<div id="footer"><a href="faq.html">Faq</a> &bull; <a href="contact.html">Contatti</a></div>
   			</div>
   		</div>
