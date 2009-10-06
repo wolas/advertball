@@ -8,18 +8,18 @@
 	
 	
 	if(isset($_POST['commit'])){
-	  	$team = new Team();
-		$attributes = array();
+  	$team = new Team();
+  	$attributes = array();
 		$team->name = $_POST['name'];
 		$team->colour1 = $_POST['colour1'];
 		$team->colour2 = $_POST['colour2'];
 		$team->coach_name = $_POST['coach_name'];
-    	$team->coach_email = $_POST['coach_email'];
-    	$team->coach_telephone = $_POST['coach_telephone'];
-    	$team->assistant_name = $_POST['assistant_name'];
-    	$team->assistant_email = $_POST['assistant_email'];
-    	$team->assistant_telephone = $_POST['assistant_telephone'];
-   	 	$team->agency_id = $session->user_id;
+  	$team->coach_email = $_POST['coach_email'];
+  	$team->coach_telephone = $_POST['coach_telephone'];
+  	$team->assistant_name = $_POST['assistant_name'];
+  	$team->assistant_email = $_POST['assistant_email'];
+  	$team->assistant_telephone = $_POST['assistant_telephone'];
+ 	 	$team->agency_id = $session->agency_id;
 
 		/*
 		 * @FileUploader - class to upload files 
@@ -38,12 +38,10 @@
 		//updates the DB 
 		if($_file->save()) {
 			// Success
-    		$session->message("Photograph uploaded successfully.");
-			//redirect_to('list_photos.php');
-			
+    	$session->message("Photograph uploaded successfully.");
 			} else {
 			// Failure
-     		$message = join("<br />", $_file->errors);
+     	$message = join("<br />", $_file->errors);
 		}
 		
 		
@@ -104,7 +102,7 @@
     				</ul>
     			</div>
     			<div id="ctndx">
-    				<h2><?php echo $session->agency_id ?></h2>
+    				<h2>New team</h2>
   				
   					<form name="_form" enctype="multipart/form-data" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
             	<table>
@@ -153,12 +151,12 @@
             			<td><input id="assistant_telephone" name="assistant_telephone" size="30" type="text"value="<?php echo $team->assistant_telephone;?>" /></td>
             		  <td><span id="errorsDiv_assistant_telephone"></span></td>
             		</tr>
-					<tr>
-            			<td>Logo :</td>
-            			<td><input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>" />
-	    				<span>Payslip: <input type="file" name="userfile" />
-			</td>
-            		  <td>&nbsp;</td>
+					      <tr>
+            			<td>Logo:</td>
+            			<td>
+            			  <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>" />
+	    				      <input type="file" name="userfile" />
+	    				    </td>
             		</tr>
             		<tr>
             			<td>&nbsp;</td>

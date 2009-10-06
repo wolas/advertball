@@ -48,55 +48,51 @@
   				</ul>
   			</div>
   			<div id="ctndx">
-  				<h2>Team</h2>
   				<div id="scroll-container">
-  					<div id="track"><div id="handle"></div></div>
-  					<div id="button-up"></div>
-  					<div id="button-down"></div>
   					<div id="content">
-						  <p>
-						    <?php echo $session->team_id; ?>
-						  </p>
-						  <table>
-            		<tr>
-            			<td>Name:</td>
-            			<td><?php echo $team->name ;?></td>
-            		</tr>
-            		<tr>
-            			<td>Colour 1:</td>
-            			<td><?php echo $team->colour1;?></td>
-            		</tr>
-            		<tr>
-            			<td>Colour 2:</td>
-            			<td><?php echo $team->colour2;?></td>
-            		</tr>
-            		<tr>
-            			<td>Coach Name:</td>
-            			<td><?php echo $team->coach_name;?></td>
-            		</tr>	
-            		<tr>
-            			<td>Coach Email:</td>
-            			<td><?php echo $team->coach_email;?></td>
-            		</tr>
-            		<tr>
-            			<td>Contact Telephone:</td>
-            			<td><?php echo $team->coach_telephone;?></td>
-            		</tr>
-            		<tr>
-            			<td>Assistant Coach Name:</td>
-            			<td><?php echo $team->assistant_name;?></td>
-            		</tr>	
-            		<tr>
-            			<td>Assistant Email:</td>
-            			<td><?php echo $team->assistant_email;?></td>
-            		</tr>
-            		<tr>
-            			<td>Assistant Telephone:</td>
-            			<td><?php echo $team->assistant_telephone;?></td>
-            		</tr>
-            	</table>
+  					  <h2><?php echo $team->name ?></h2>
+  					  <div style="float:left; width:250px;">
+                <img src="../../uploads/<?php echo $team->logo;?>" width="200px"/>
+              </div>
+  					  <div style="float:left;">
+						    <table>
+              		<tr>
+              			<td>Colour 1:</td>
+              			<td><?php echo $team->colour1;?></td>
+              		</tr>
+              		<tr>
+              			<td>Colour 2:</td>
+              			<td><?php echo $team->colour2;?></td>
+              		</tr>
+              		<tr>
+              			<td>Coach Name:</td>
+              			<td><?php echo $team->coach_name;?></td>
+              		</tr>	
+              		<tr>
+              			<td>Coach Email:</td>
+              			<td><?php echo $team->coach_email;?></td>
+              		</tr>
+              		<tr>
+              			<td>Contact Telephone:</td>
+              			<td><?php echo $team->coach_telephone;?></td>
+              		</tr>
+              		<tr>
+              			<td>Assistant Coach:</td>
+              			<td><?php echo $team->assistant_name;?></td>
+              		</tr>	
+              		<tr>
+              			<td>Assistant Email:</td>
+              			<td><?php echo $team->assistant_email;?></td>
+              		</tr>
+              		<tr>
+              			<td>Assistant Telephone:</td>
+              			<td><?php echo $team->assistant_telephone;?></td>
+              		</tr>
+              	</table>
+              </div>
+						  <div style="height:1px; clear:both;"></div>
 						  <br/>
-						  <a href="../player/form.php">Manage players</a>
+						  <a href="manage_players.php">Manage players</a>
   						<p class="last">&nbsp;</p>
   					</div>
   				</div>
