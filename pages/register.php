@@ -1,8 +1,7 @@
 <?php 
-
 	ob_start();
 	require_once("../includes/initialize.php");
-    include_once('../includes/phpMailer/class.phpmailer.php');
+  include_once('../includes/emailer.php');
 
 	if(isset($_POST['commit'])){
 	//place address in single string
@@ -31,79 +30,37 @@
 		if($_POST['legal_term']==1){$agree="Si";}else{$agree="No";} 
 		
 		
-		$body ='<html><head><title>Advertball</title></head><body>'; 
-		$body .= "Pre-iscrizione effettuata con successo.<br/><br>" .
-		    "<b>Benvenuto nel mondo Advertball!</b><br>\n" .
-		    "A breve vi saranno comunicati via email i dettagli su come completare la registrazione.<br><br>" . 
-		    "A-team<br>" . 
-		    "Ecco i vostri dati:<br> <br> " .
+		$body = "Pre-iscrizione effettuata con successo.<br/>" .
+		    "<b>Benvenuto nel mondo Advertball!</b><br/>" .
+		    "A breve vi saranno comunicati via email i dettagli su come completare la registrazione.<br/>" . 
+		    "A-team<br/>" . 
+		    "Ecco i vostri dati:<br /> <br /> " .
 				
-				"<b>Azienda:</b> " . $_POST['company_name'] . "<br>" .
-				"<b>Indirizzo:</b> " . $_POST['street'] . "<br>" .
-				"<b>Citta:</b> " . $_POST['city'] . "<br>" .
-				"<b>Regione:</b> " . $_POST['state'] . "<br>" .
-				"<b>CAP:</b> " . $_POST['postcode'] . "<br>" .
-				"<b>Nome:</b> " . $_POST['contact_name'] . "<br>" .
-				"<b>Tel:</b> " .  $_POST['contact_telephone'] . "<br>" .
-				"<b>Email:</b> " . $_POST['contact_email']  . "<br>" .
-				"<b>Partiva IVA:</b> " . htmlspecialchars($_POST['partita_iva']) . "<br>" .
+				"<b>Azienda:</b> " . $_POST['company_name'] . "<br />" .
+				"<b>Indirizzo:</b> " . $_POST['street'] . "<br />" .
+				"<b>Citta:</b> " . $_POST['city'] . "<br />" .
+				"<b>Regione:</b> " . $_POST['state'] . "<br />" .
+				"<b>CAP:</b> " . $_POST['postcode'] . "<br />" .
+				"<b>Nome:</b> " . $_POST['contact_name'] . "<br />" .
+				"<b>Tel:</b> " .  $_POST['contact_telephone'] . "<br />" .
+				"<b>Email:</b> " . $_POST['contact_email']  . "<br />" .
+				"<b>Partiva IVA:</b> " . htmlspecialchars($_POST['partita_iva']) . "<br />" .
 				 
-				"<b>Username:</b>" . addslashes($_POST['username']) . "<br>" .
-				"<b>Password:</b> " . $_POST['password'] . "<br><br>" .
+				"<b>Username:</b>" . addslashes($_POST['username']) . "<br />" .
+				"<b>Password:</b> " . $_POST['password'] . "<br /><br />" .
 				"<a href=\"http://www.advertball.it\">http://www.advertball.it</a>";
 		  
     $to =$_POST['contact_email']; //array($_POST['contact_email'], "info@advertball.it");
     $subject = 'Advertball Confirmation';
-   /*
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-   //$headers .= 'From: advertball@advertball.it' . "\r\n" . 'Reply-To: info@advertball.it';
-    $headers .= 'From: advertball@advertball.it' . "\r\n" . 'Reply-To: info@advertball.it';
-
-   // $mail_sent = @mail( $to, $subject, $body, $headers );
-    $mail_sent = @mail( $to, $subject, $body,$headers);
+    $headers .= 'From: AdvertBall@advertball.it' . "\r\n" . 'Reply-To: info@advertball.it';
+    
+    $mail_sent = @mail( $to, $subject, $body, $headers );
 		//redirect_to("registration_complete.html");
 		if($mail_sent){
 			redirect_to("registration_complete.html");
-		}*/
-		$mail = new PHPMailer();
-		$mail->IsSMTP();
-		$mail->IsSendmail();
-
-		$mail->SMTPAuth = true; 			// enable SMTP authentication
-		$mail->SMTPSecure = "ssl"; 			// sets the prefix to the server
-		/*
-		$mail->Host = "smtp.gmail.com";    // sets GMAIL as the SMTP server
-		$mail->Port = 465;                 // set the SMTP port
-		$mail->Username = "pushpa.lama";   // GMAIL username
-		$mail->Password = "00rg47bn44";    // GMAIL password
-		$mail->From = "info.advertball.it";*/
-		//$mailer->AddReplyTo('billing@yourdomain.com', 'Billing Department');
-   		//look in config
-		$mail->Host = SMTP_HOST;
-		$mail->Port = SMTP_PORT; 
-		$mail->Username = SMTP_USERNAME;  
-		$mail->Password = SMTP_PASSWORD;
-		
-	
-		$mail->FromName = "AdvertBall";
-		$mailer->From = 'info@servizio.advertball.it';
-		
-		$mail->AddAddress($to);
-		$mail->AddBCC("giuseppe.moltedo@teamalfa.it", "Recepient 1");
-		$mail->Subject = "Advertball Confirmation";
-		$mail->IsHTML(true);
-		$mail->Body = $body;
-		
-
-		if(!$mail->Send()) {
-			echo 'Message was not sent.';
-			echo 'Mailer error: ' . $mail->ErrorInfo;
-			} else {
-			redirect_to("registration_complete.html");
 		}
-
-
 	}
   }  
 ?>
@@ -181,7 +138,7 @@
                   
                   <p>Per partecipare ad Advertball 2009 – 2010, occorre:</p>                  
                   <br/>
-                  <p>Compilare il modulo di pre-iscrizione ADVERTBALL 2009-2010 sul sito Internet entro il 2 Ottobre 2009.</p>
+                  <p>Compilare il modulo di pre-iscrizione ADVERTBALL 2009-2010 sul sito Internet entro il 9 Ottobre 2009.</p>
                   <br/>
                   <p>Effettuare il bonifico di anticipo pari a metà della quota di iscrizione, ovvero 780 € (totale iscrizione 1560 € a squadra) entro il 12 Ottobre.</p>
                   <br/>
@@ -264,7 +221,7 @@
                           <td><span id="errorsDiv_rules_term"></span></td>
                     		</tr>
                     		<tr>
-                    		  <td colspan="3" align="right"><input id="commit" name="commit" class="invia" type="submit" value="" /></td>
+                    		  <td colspan="3" align="right"><input id="commit" name="commit" class="send" type="submit" value="" /></td>
                     		</tr>
                     	</table>
                     </form>

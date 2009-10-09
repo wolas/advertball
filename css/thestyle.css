@@ -89,8 +89,17 @@ p{ margin-bottom:10px;}
 #ctndx form{height: 435px; width:665px; margin:25px 0 0 0px;}
 #ctndx form table td,#ctndx form table td a{color:#3f250e}
 #ctndx form input{height: 17px; width:270px;}
-#ctndx form input.invia{width:73px; height:21px;background: url(../images/btn_invia.gif) 0 0  no-repeat; border:0; margin:0; padding:0;}
+#ctndx form input.send{width:73px; height:21px;background: url(../images/btn_invia.gif) 0 0  no-repeat; border:0; margin:0; padding:0;}
 #ctndx form input.checkbox{width:13px; height:13px;}
+#ctndx form input.save{width:73px; height:21px; background: url(../images/btn_save.gif) 0 0  no-repeat; border:0; margin:0; padding:0;}
+#ctndx form input.browse{height:20px;}
+
+ 
+/* Table */
+#ctndx table{font-size:12px;}
+#ctndx .edit_table tr td{font-weight:bold; color:#3f250e; text-align:right;padding-right:5px;}
+#ctndx .edit_table tr .right_column{color:#ffffff; text-align:left;padding-left:9px;}
+#ctndx .center_table table {margin-left:90px;} 
 
 /*Validation*/
 .panelContent {border-right: #999 1px solid; padding-right: 1em; border-top: #999 1px solid; padding-left: 1em; padding-bottom: 1em; margin: 0em; border-left: #999 1px solid; padding-top: 1em; border-bottom: #999 1px solid}

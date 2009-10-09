@@ -5,11 +5,9 @@
 ?>
 
 <?php
-	
+	$team = Agency::find_by_id($session->agency_id)->team();
 	
 	if(isset($_POST['commit'])){
-  	$team = new Team();
-  	$attributes = array();
 		$team->name = $_POST['name'];
 		$team->colour1 = $_POST['colour1'];
 		$team->colour2 = $_POST['colour2'];
@@ -20,42 +18,21 @@
   	$team->assistant_email = $_POST['assistant_email'];
   	$team->assistant_telephone = $_POST['assistant_telephone'];
  	 	$team->agency_id = $session->agency_id;
-
-		/*
-		 * @FileUploader - class to upload files 
-		 */
-		$max_file_size = 1048576;//max = 1mb
-		$_file = new FileUploader();
-		$_file->attach_file($_FILES['userfile']);
-		//allow only jpeg/gif
-		if($_file->type == "image/gif" || $_file->type == "image/jpeg"){
-			$team->logo = $_file->filename;
-			}else{	
-			$message = "Only gif or jpeg allowed";
+		
+		if($team->update()){
+		  redirect_to("show.php");
+		  $session->save_team_id($team);
+		}else{
+		  $message = "Unable to insert data";	  
 		}
 		
-		if(strlen($message) == 0){
-		  //updates the DB 
-  		if(!$_file->save()) {
-  			// Failure
-       	$message = join("<br />", $_file->errors);
-  		}
-  		
-  		if($team->create()){
-  		  redirect_to("show.php");
-  		  $session->save_team_id($team);
-  		}else{
-  		  $message = "Unable to insert data";	  
-  		  redirect_to("form.php");
-  		}
-		}
 	}
 
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Advertball - Squadra <?php echo $team->name ?></title>
+  <title>Advertball - Modifica Squadra <?php echo $team->name ?></title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta http-equiv="Content-Language" content="it"/>
   <meta name="script" http-equiv="Content-Script-Type" content="text/javascript"/>
@@ -78,7 +55,7 @@
         rules[6]='assistant_email:assistant email|email';
         rules[7]='colour1|required';
         rules[8]='colour2|required';
-        rules[9]='userfile:Logo|required';
+        
     </script>
 </head>
 <body>
@@ -97,72 +74,65 @@
     				</ul>
     			</div>
     			<div id="ctndx">
-    			  <h2><img src="../../images/new_team.gif" /></h2>
-    				<div id="scroll-container">
+    			  <h2><img src="../../images/edit_team.gif" alt="Modifica Squadra" /></h2>
+    			  <div id="scroll-container">
     					<div id="content">
-  				      <h3><?php echo $message ?></h3>
-      					<form style="padding: 40px 0 0 0px;" name="_form" enctype="multipart/form-data" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
-                	<table class="edit_table">
+    					  <h3><?php echo $message ?></h3>
+  				  	  <form class="center_table" name="_form" enctype="multipart/form-data" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
+                	<table class="edit_table center_table" style="font-weight: bold;">
                 		<tr>
-                			<td>Name:</td>
+                			<td>Nome</td>
                 			<td><input id="name" name="name" size="30" maxlength="30" type="text" value="<?php echo $team->name;?>"/></td>
-                		  <td class="right_column"><span id="errorsDiv_name"></span></td>
+                		  <td><span id="errorsDiv_name"></span></td>
                 		</tr>
                 		<tr>
-                			<td>Colour 1:</td>
+                			<td>Colore 1</td>
                 			<td><input id="colour1" name="colour1" size="30" maxlength="30" type="text" value="<?php echo $team->colour1;?>"/></td>
-                		  <td class="right_column"><span id="errorsDiv_colour1"></span></td>
+                		  <td><span id="errorsDiv_colour1"></span></td>
                 		</tr>
                 		<tr>
-                			<td>Colour 2:</td>
+                			<td>Colore 2</td>
                 			<td><input id="colour2" name="colour2" size="30" maxlength="30" type="text" value="<?php echo $team->colour2;?>"/></td>
-                		  <td class="right_column"><span id="errorsDiv_colour2"></span></td>
+                		  <td><span id="errorsDiv_colour2"></span></td>
                 		</tr>
-                		<tr><td colspan="3">&nbsp;</td></tr>
+                		<tr><td colspan="3" class="table_separator">&nbsp;</td></tr>
                 		<tr>
-                			<td>Coach Name:</td>
+                			<td>Coach Name</td>
                 			<td><input id="coach_name" name="coach_name" size="30" maxlength="30" type="text" value="<?php echo $team->coach_name;?>"/></td>
-                		  <td class="right_column"><span id="errorsDiv_coach_name"></span></td>
+                		  <td><span id="errorsDiv_coach_name"></span></td>
                 		</tr>	
                 		<tr>
-                			<td>Coach Email:</td>
+                			<td>Coach Email</td>
                 			<td><input id="coach_email" name="coach_email" size="30" type="text" value="<?php echo $team->coach_email;?>" /></td>
-                		  <td class="right_column"><span id="errorsDiv_coach_email"></span></td>
+                		  <td><span id="errorsDiv_coach_email"></span></td>
                 		</tr>
                 		<tr>
-                			<td>Contact Telephone:</td>
-                			<td><input id="coach_telephone" name="coach_telephone" size="30" type="text"value="<?php echo $team->coach_telephone;?>" /></td>
-                		  <td class="right_column"><span id="errorsDiv_coach_telephone"></span></td>
+                			<td>Contact Telephone</td>
+                			<td><input id="coach_telephone" name="coach_telephone" size="30" type="text" value="<?php echo $team->coach_telephone;?>" /></td>
+                		  <td><span id="errorsDiv_coach_telephone"></span></td>
                 		</tr>
-                		<tr><td colspan="3">&nbsp;</td></tr>
+                		<tr><td colspan="3" class="table_separator">&nbsp;</td></tr>
                 		<tr>
-                			<td>Assistant Coach Name:</td>
+                			<td>Assistant Coach Name</td>
                 			<td><input id="assistant_name" name="assistant_name" size="30" maxlength="30" type="text" value="<?php echo $team->assistant_name;?>"/></td>
-                		  <td class="right_column"><span id="errorsDiv_assistant_name"></span></td>
+                		  <td><span id="errorsDiv_assistant_name"></span></td>
                 		</tr>	
                 		<tr>
-                			<td>Assistant Email:</td>
+                			<td>Assistant Email</td>
                 			<td><input id="assistant_email" name="assistant_email" size="30" type="text" value="<?php echo $team->assistant_email;?>" /></td>
-                		  <td class="right_column"><span id="errorsDiv_assistant_email"></span></td>
+                		  <td><span id="errorsDiv_assistant_email"></span></td>
                 		</tr>
                 		<tr>
-                			<td>Assistant Telephone:</td>
-                			<td><input id="assistant_telephone" name="assistant_telephone" size="30" type="text"value="<?php echo $team->assistant_telephone;?>" /></td>
-                		  <td class="right_column"><span id="errorsDiv_assistant_telephone"></span></td>
+                			<td>Assistant Telephone</td>
+                			<td><input id="assistant_telephone" name="assistant_telephone" size="30" type="text" value="<?php echo $team->assistant_telephone;?>" /></td>
+                		  <td><span id="errorsDiv_assistant_telephone"></span></td>
                 		</tr>
-                		<tr><td colspan="3">&nbsp;</td></tr>
-    					      <tr>
-                			<td>Logo:</td>
-                			<td>
-                			  <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>" />
-    	    				      <input id="userfile" type="file" name="userfile" size="33"/>
-    	    				    </td>
-    	    				    <td class="right_column"><span id="errorsDiv_userfile"></span></td>
-                		</tr>
-                		<tr><td colspan="3">&nbsp;</td></tr>
+                		<tr><td colspan="3" class="table_separator">&nbsp;</td></tr>
                 		<tr>
-                			<td colspan="2" style="text-align:right;"><input id="commit" name="commit" class="send" type="submit" value="" /></td>
-                		  <td>&nbsp;</td>
+                			<td colspan="3">
+                			  <input id="commit" name="commit" class="save" type="submit" value="" style="float:right"/>
+                		    <a href="show.php?id=<?php echo $team->id ?>"><img src="../../images/btn_back.gif" style="float:left"/></a>
+                		  </td>
                 		</tr>
                 	</table>
                 </form>
@@ -171,7 +141,7 @@
     			  <div id="footer"><?php if($session->is_logged_in()){?><a href="logout.php">Logout</a> &bull; <?php }?><a href="faq.html">Faq</a> &bull; <a href="../contact.html">Contatti</a></div>
     			</div>
     		</div>
-  	  </td>
+    	</td>
     </tr>
   </table>
   <script type="text/javascript">
@@ -185,6 +155,6 @@
     } catch(err) {}
   </script>
 
-  </body>
+</body>
 </html>
 <?php ob_end_flush();?>

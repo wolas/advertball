@@ -54,7 +54,7 @@
       				<ul id="menu">
       					<li><a href="../about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
       					<li><a href="../rules.html" class="menu2"><span>Regolamento</span></a></li>
-      					<li><a href="../register.php" class="menu3"><span>Preiscrizione</span></a></li>
+      				  <li><a href="index.php" class="menu3on"><span>Squadre</span></a></li>
       					<li><a href="../programme.html" class="menu4"><span>Programma</span></a></li>
       					<li><a href="../sponsors.html" class="menu6"><span>Spondor</span></a></li>
       				</ul>
@@ -90,7 +90,7 @@
               </div>
               </div>
               <div style="height:1px; clear:both;"></div>
-  					  <div id="footer"><a href="#1">Faq</a> &bull; <a href="contact.html">Contatti</a></div>
+  					  <div id="footer"><?php if($session->is_logged_in()){?><a href="logout.php">Logout</a> &bull; <?php }?><a href="#1">Faq</a> &bull; <a href="contact.html">Contatti</a></div>
 			      </div>
 			    </div>			    
     	  </td>
