@@ -138,7 +138,7 @@
                 </form>
     			    </div>
     			  </div>
-    			  <div id="footer"><?php if($session->is_logged_in()){?><a href="logout.php">Logout</a> &bull; <?php }?><a href="faq.html">Faq</a> &bull; <a href="../contact.html">Contatti</a></div>
+    			  <div id="footer"><?php if($session->is_logged_in()){?><a href="logout.php">Logout</a> &bull; <?php }?><a href="../faq.html">Faq</a> &bull; <a href="../contact.html">Contatti</a></div>
     			</div>
     		</div>
     	</td>

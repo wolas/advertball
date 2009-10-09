@@ -84,7 +84,7 @@
               		</form>
       			    </div>
       			  </div>
-      			  <div id="footer"><a href="faq.html">Faq</a> &bull; <a href="../contact.html">Contatti</a></div>
+      			  <div id="footer"><a href="../faq.html">Faq</a> &bull; <a href="../contact.html">Contatti</a></div>
       			</div>
       		</div>
         </td>
