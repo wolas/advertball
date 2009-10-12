@@ -1,6 +1,6 @@
 <?php
 	require_once(LIB_PATH.DS.'database.php');
-    class FileUploader extends DatabaseObject{
+    class MFileUploader extends DatabaseObject{
     	protected static $table_name='photos';
 		protected static $db_fields=array('id','filename','type','size','caption');
 		public $id;
@@ -35,6 +35,7 @@
 	
 		//Pass in $_FILE(['userfile']) as an argument
 		public function attach_file($files) {
+			echo $files;
 			//perform error checking on the form parameters
 			if(!$files || empty($files) || !is_array($files)) {
 				//error: nothing uploaded or wrong argument usage
@@ -55,11 +56,11 @@
 		 					
 							//echo $filename."<br />";//$_FILES['userfile']['name'][$key];
 					     	
-							//echo $_FILES['userfile']['tmp_name'][$key];
+							echo $_FILES['userfile']['tmp_name'][$key];
 							// echo "<br>";
 							//copy($_FILES['userfile']['tmp_name'][$key], $upload_dir);
 							//echo $_FILES['userfile']['tmp_name'][$key];
-							move_uploaded_file($_FILES['userfile']['tmp_name'][$key],$filename);
+							//move_uploaded_file($_FILES['userfile']['tmp_name'][$key],$filename);
 							//unset($_FILES['userfile']['tmp_name'][$key]);
 							//chmod("$filename",0777);
 							//return true;

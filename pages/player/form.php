@@ -1,19 +1,73 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
-	if(!$session->is_logged_in()){redirect_to("login.php");}
+	//if(!$session->is_logged_in()){redirect_to("login.php");}
 ?>
 
 <?php
-  $team = Agency::find_by_id($session->agency_id)->team();
+ // $team = Agency::find_by_id($session->agency_id)->team();
 
 	if(isset($_POST['commit'])){
 	  $player = new Player();
-		$player->name = $_POST['name'];
+	  $player->name = $_POST['name'];
 	  $player->surname = $_POST['surname'];
 	  $player->email = $_POST['email'];
 	  $player->team_id = $team->id;
 
+
+		/*
+		 * upload multiple files 
+		 */
+		$_files;
+		$upload_dir= SITE_ROOT . DS . "uploads" .DS;
+	
+		while(list($key,$value) = each($_FILES['userfile']['name'])){
+			
+			if(!empty($value)){
+				$filename = $value;
+					
+
+					
+					
+					//only upload if file name is different from exisiting file names
+					if(file_exists($upload_dir.$filename)){
+						echo "File name supplied alraedy exists. Please change the fil name and and try again!";
+						exit;
+						}else{
+						$_files .=	str_replace(" ","_",$filename) . ":";			
+						$filename= $upload_dir . str_replace(" ","_",$filename);// replace blank space with '_'
+							//echo $_FILES['userfile']['type'][$key];
+				     	// echo "<br>";
+						//copy($_FILES['userfile']['tmp_name'][$key], $upload_dir);
+						//echo $_FILES['userfile']['tmp_name'][$key];
+						move_uploaded_file($_FILES['userfile']['tmp_name'][$key],$filename);
+						//echo $_FILES['userfile']['type'];
+					}
+					
+			
+			}
+		}
+		//retrieve file uploaded file names
+		list($_photo, $_payslip) = explode(":", $_files);
+		
+		//add file name to player fields
+		$player->photo = $_photo;
+		$player->payslip = $_payslip;
+		  
+		
+		
+		/*
+		//allow only jpeg/gif
+		if($_file->type == "image/gif" || $_file->type == "image/jpeg"){
+			$team->logo = $_file->filename;
+			}else{	
+			echo "Only gif or jpeg allowed";
+			exit;
+			
+		}
+		*/
+		
+	
 		if($player->create()){
 		  redirect_to("show.php?id=".$player->id);
 		}else{
@@ -64,7 +118,7 @@
     			<div id="ctndx">
     				<h2>Player for team <?php echo $team->name ?></h2>
   				
-  					<form name="_form" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
+  					<form name="_form" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');" enctype='multipart/form-data'>
             	<table>
             		<tr>
             			<td>Name:</td>
@@ -82,6 +136,14 @@
             		  <td><span id="errorsDiv_email"></span></td>
             		</tr>
             		<tr>
+            			<td>logo</td>
+            			<td><input type="file" name="userfile[]"></td>
+            		</tr>
+					<tr>
+            			<td>playslip</td>
+            			<td><input type="file" name="userfile[]"></td>
+            		</tr>
+					<tr>
             			<td>&nbsp;</td>
             			<td><input id="commit" name="commit" class="buttonstyle" type="submit" value="save" /></td>
             		</tr>

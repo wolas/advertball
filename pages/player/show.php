@@ -57,7 +57,7 @@
 						  <table>
             		<tr>
             			<td>Name:</td>
-            			<td><?php echo $player->name ;?></td>
+            			<td><?php echo $player->name;?></td>
             		</tr>
             		<tr>
             			<td>Surname</td>
