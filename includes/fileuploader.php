@@ -16,13 +16,13 @@
 		
 		protected $upload_errors = array(
 			// http://www.php.net/manual/en/features.file-upload.errors.php
-			UPLOAD_ERR_OK 			 => "No errors.",
+			UPLOAD_ERR_OK 			   => "No errors.",
 			UPLOAD_ERR_INI_SIZE  	 => "Larger than upload_max_filesize.",
-		  	UPLOAD_ERR_FORM_SIZE 	 => "Larger than form MAX_FILE_SIZE.",
-		  	UPLOAD_ERR_PARTIAL 		 => "Partial upload.",
-		  	UPLOAD_ERR_NO_FILE 		 => "No file.",
-		 	UPLOAD_ERR_NO_TMP_DIR    => "No temporary directory.",
-		 	UPLOAD_ERR_CANT_WRITE    => "Can't write to disk.",
+	  	UPLOAD_ERR_FORM_SIZE 	 => "Larger than 1 Mb",
+	  	UPLOAD_ERR_PARTIAL 		 => "Partial upload.",
+	  	UPLOAD_ERR_NO_FILE 		 => "No file selected",
+		 	UPLOAD_ERR_NO_TMP_DIR  => "No temporary directory.",
+		 	UPLOAD_ERR_CANT_WRITE  => "Can't write to disk.",
 		 	UPLOAD_ERR_EXTENSION 	 => "File upload stopped by extension."
 		);
 		
@@ -82,6 +82,7 @@
 			   		$this->errors[] = "The file name '{$this->filename}' already exists. Please change the file name and try again.";
 			    	return false;
 			  	}
+			  	
 			
 				// move the file 
 				if(move_uploaded_file($this->temp_path, $target_path)) {

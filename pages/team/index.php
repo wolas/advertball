@@ -1,36 +1,12 @@
 <?php
 	require_once("../../includes/initialize.php");
-	
-	//forward if already logged in
-	if($session->is_logged_in()){
-		redirect_to("form.php");
-	}
-	
-	//if form submitted
-	if(isset($_POST['submit'])){
-		$username = trim($_POST['username']);
-		$password = trim($_POST['password']);
-	
-		//check DB if submitted username /password exists
-		$agency=Agency::authenticate($username,$password);
-		
-		if($agency){
-			$session->login($agency);
-			$agency->team() ? redirect_to("show.php?id=" . $agency->team()->id) : redirect_to("form.php");
-		}else{
-			//username/password not found
-			$message = "Username or Password incorrect!";
-		}
-	}else{//form has't been submitted  
-		$username = '';
-		$password = '';
-	}
+	$teams = Team::find_all();
 ?>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Advertball - Login</title>
+  <title>Advertball - Squadre</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta http-equiv="Content-Language" content="it"/>
   <meta name="script" http-equiv="Content-Script-Type" content="text/javascript"/>
@@ -58,33 +34,20 @@
       				</ul>
       			</div>
       			<div id="ctndx">
-    		      <h2><img src="../../images/login.gif" /></h2>
+    		      <h2><img src="../../images/squadre.gif" /></h2>
       				<div id="scroll-container">
       					<div id="content">
-    		          <h3><?php echo output_message($message); ?></h3>
-        		      <form style="padding-left:90px; padding-top:100px;" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-              		  <table class="edit_table">
-              		    <tr>
-              		      <td>Username:</td>
-              		      <td><input type="text" name="username" maxlength="30" value="<?php echo htmlentities($username); ?>" /></td>
-              		    </tr>
-              		    <tr>
-              		      <td>Password:</td>
-              		      <td><input type="password" name="password" maxlength="30" value="<?php echo htmlentities($password); ?>" /></td>
-              		    </tr>
-              		    <tr>
-              		      <td colspan="2">&nbsp;</td>
-              		    </tr>
-              		    <tr>
-              		      <td colspan="2">
-              		        <input type="submit" class="send" name="submit" value="" />
-              		      </td>
-              		    </tr>
-              		  </table>
-              		</form>
+        		      <?php foreach($teams as $team){ ?>
+        		        <div style="background-color:#ffffff;float:left;width:120px;height:120px;margin:10px;">
+        		          <a href="show.php?id=<?php echo $team->id?>"><img src="../../uploads/<?php echo $team->logo ?>" style="width:100px;height:100px;padding:10px 0 0 10px;"/></a>
+        		        </div>
+        		      <?php }?>
       			    </div>
       			  </div>
-      			  <div id="footer"><a href="../faq.html">Faq</a> &bull; <a href="../contact.html">Contatti</a></div>
+      			  <div id="footer">
+      			    <?php if($session->is_logged_in()){ ?><a href="logout.php">Logout</a> &bull; <?php }else{?><a href="login.php">Login</a> &bull; <?php }?>
+        			  <a href="../faq.html">Faq</a> &bull; <a href="../contact.html">Contatti</a>
+      			  </div>
       			</div>
       		</div>
         </td>

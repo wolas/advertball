@@ -17,6 +17,12 @@ class Team extends DatabaseObject{
 	public $assistant_email;	
 	
 	
+	public function players()
+	{
+	  $sql = "SELECT * FROM players WHERE team_id = '" . $this->id . "'";
+	  return Player::find_by_sql($sql);
+	}
+	
 	public static function agency(){
 	  return Agency::find_by_id(self::$agency_id);
 	}
