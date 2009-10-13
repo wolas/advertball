@@ -2,7 +2,7 @@
 
 class Player extends DatabaseObject{
 	protected static $table_name='players';
-	protected static $db_fields=array('id', 'fid','first_name', 'surname', 'email',"photo","payslip");
+	protected static $db_fields=array('id', 'team_id','name', 'surname', 'email',"photo","payslip");
 	public $id;
 	public $team_id;
 	public $name;	
@@ -11,7 +11,25 @@ class Player extends DatabaseObject{
 	public $photo;
 	public $payslip;
 
-
+  public function team()
+  {
+    return Team::find_by_id($this->team_id);
+  }
+  
+	public function full_name()
+	{
+	  return $this->name . " " . $this->surname;
+	}
+	
+	public function photo_url()
+	{
+	  return "team_" . $this->team_id . DS . $this->photo;
+	}
+	
+	public function payslip_url()
+	{
+	  return "team_" . $this->team_id . DS . $this->payslip;
+	}
 	
 	//common DB methods - can be placed inside DatabaseObject class in PHP 5.3
 	//returns all records
@@ -138,6 +156,16 @@ class Player extends DatabaseObject{
 		return ($database->affected_rows()==1) ? true : false;
 	}
 	
+	public function delete_photo()
+	{
+	  unlink(SITE_ROOT . DS . "uploads" . DS . $this->photo_url());
+	}
+	
+	public function delete_payslip()
+	{
+	  unlink(SITE_ROOT . DS . "uploads" . DS . $this->payslip_url());
+	}
+	
 	//delete
 	public function delete(){
 		global $database;
@@ -145,6 +173,9 @@ class Player extends DatabaseObject{
 		$sql  .= "WHERE id=" . $database->escape_value($this->id);
 		$sql  .= " LIMIT 1";
 		$database->query($sql);
+		//remove associated files
+		$this->delete_photo();
+    $this->delete_payslip();
 		return ($database->affected_rows()==1) ? true : false;
 	}
 	

@@ -16,15 +16,25 @@ class Team extends DatabaseObject{
 	public $assistant_telephone;
 	public $assistant_email;	
 	
+	public function agency()
+	{
+	  return Agency::find_by_id($this->agency_id);
+	}
+	
+	public function delete_logo()
+	{
+	  unlink(SITE_ROOT . DS . "uploads" . DS . $this->logo_url());
+	}
+	
+	public function logo_url()
+	{
+	  return "team_" . $this->id . DS . $this->logo;
+	}
 	
 	public function players()
 	{
 	  $sql = "SELECT * FROM players WHERE team_id = '" . $this->id . "'";
 	  return Player::find_by_sql($sql);
-	}
-	
-	public static function agency(){
-	  return Agency::find_by_id(self::$agency_id);
 	}
 	
 	//autheticates 
@@ -166,7 +176,7 @@ class Team extends DatabaseObject{
 		$sql .= " WHERE id=" .  $database->escape_value($this->id);
 		
 		$database->query($sql);
-		return ($database->affected_rows()==1) ? true : false;
+		return true;
 	}
 	
 	//delete

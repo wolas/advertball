@@ -8,7 +8,6 @@ th{font-size:15px;color:#3f250e;border-bottom:1px solid #ccc;}
 
 
 /*Generali*/
-#ctndx{padding-left: 30px;}
 body{background-color:#000;margin:0;padding:0;}
 img{border:0}
 form{margin:0;padding:0;}
@@ -21,12 +20,17 @@ form input{margin:0;padding:0;}
 /*Struttura*/
 #page{display:block;width:1100px; height:615px; margin:auto; text-align:left; border:1px solid #333;}
 #ctnsx{width:210px; height:615px; background:url(../images/back_sx.jpg) 0 bottom no-repeat; float:left;}
-#ctndx{width:860px; height:615px; background-color:#c1bfa8; float:left; margin:0;}
+#ctndx{width:890px; height:615px; background:#c1bfa8; float:left; margin:0;}
+#scroll-container {position: relative;height: 495px; width:800px; margin:25px 0 0 30px;}
+#content{position: absolute;top: 0;left: 0; width: 805px;overflow: hidden;}
 
 /*Header*/
 h1{width:210px; margin:0; padding:0;}
 h1 a{width:210px; height:210px; background:url(../images/logo.gif) 0 0 no-repeat; display:block;}
 h1 a span{ display:none;}
+
+/* Footer */
+#footer{width:95%; height:34px;float:left; margin:10px 0 0 10px; text-align:right; border-top:2px solid #b8b49d; color:#3f250e;}
 
 /*Menu*/
 ul#menu{list-style-type:none; float:left; margin:0; padding:10px 0 0 15px;}
@@ -41,7 +45,7 @@ a.menu_blank:hover{display:block; width:173px; height:30px; background:url(../im
 #ctndx h2{ margin:20px 0 5px 20px}
 
 /*Form*/
-#ctndx form{height: 435px; width:665px; margin:25px 0 0 0px;}
+#ctndx form{height: auto; width:auto; margin:25px 0 0 0px;}
 #ctndx form table td,#ctndx form table td a{color:#3f250e}
 #ctndx form input{height: 20px; width:270px;}
 #ctndx form input.invia{width:73px; height:21px;background: url(../images/btn_invia.gif) 0 0  no-repeat; border:0; margin:0; padding:0;}
@@ -74,3 +78,5 @@ img.regolamento{ margin:-3px 0 0 90px}
 #texttab2 p{margin:0; padding:0;}
 
 
+.player_widget{text-decoration:none; float:left; margin: 10px 0 0px 15px; width:230px;}
+.player_widget:hover{background-color:#323232;}

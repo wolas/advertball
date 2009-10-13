@@ -42,7 +42,6 @@
   					<li><a href="../dashboard.php" class="menu_blank">Dashboard</a></li>
   					<li><a href="index.php" class="menu_blank">Agencies</a></li>
   					<li><a href="../teams/index.php" class="menu_blank">Teams</a></li>
-  					<li><a href="../logout.php" class="menu_blank">Logout</a></li>
   				</ul>
   			</div>
   			<div id="ctndx">

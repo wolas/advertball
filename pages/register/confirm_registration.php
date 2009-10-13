@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Advertball - Premi</title>
+  <title>Advertball - Che cos'&egrave; Advertball</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta http-equiv="Content-Language" content="it"/>
   <meta name="script" http-equiv="Content-Script-Type" content="text/javascript"/>
@@ -33,23 +33,25 @@
   			<div id="ctnsx">
   				<h1><a href="../../index.html"><span>ADVERTBALL</span></a></h1>
   				<ul id="menu">
-  					<li><a href="about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
-  					<li><a href="rules.html" class="menu2"><span>Regolamento</span></a></li>
+  					<li><a href="../static/about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
+  					<li><a href="../static/rules.html" class="menu2"><span>Regolamento</span></a></li>
   					<li><a href="../teams/index.php" class="menu3"><span>Squadre</span></a></li>
-  					<li><a href="programme.html" class="menu4"><span>Programma</span></a></li>
-  					<li><a href="sponsors.html" class="menu6"><span>Spondor</span></a></li>
+  					<li><a href="../static/programme.html" class="menu4"><span>Programma</span></a></li>
+  					<li><a href="../static/sponsors.html" class="menu6"><span>Spondor</span></a></li>
   				</ul>
   			</div>
   			<div id="ctndx">
-  				<h2><img src="../../images/premi.gif" alt="" /></h2>
+  				<h2><img src="../../images/preiscrizione.gif" alt="" /></h2>
   				<div id="scroll-container">
   					<div id="track"><div id="handle"></div></div>
   					<div id="button-up"></div>
   					<div id="button-down"></div>
   					<div id="content">
-						
-						  INSERT HERE
-						  
+              <p>
+                Congratulation! <?php echo $agency->contact_name; ?>.<br />
+                You have registered successfully.<br />
+                You will shortly recive an email confirmation shortly with the bank transfer details.
+              </p>
   						<p class="last">&nbsp;</p>
   					</div>
   				</div>
