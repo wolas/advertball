@@ -33,11 +33,18 @@
       				</ul>
       			</div>
       			<div id="ctndx">
-      			  <h2><img src="../../images/edit_player.gif" /></h2>
+      			  <h2>Matches</h2>
               <div id="scroll-container">
       					<div id="content">
-      				    <h2>TITLE</h2>
-  				
+  				        
+  				        <table>
+  				          <?php foreach($matches as $match){ ?>
+  				          <tr>
+  				            <td><?php echo $match->time ?></td>
+  				            <td><?php echo $match->time ?></td>
+  				          </tr>
+  				          <?php } ?>
+  				        </table>
   				
                 </div>
               </div>

@@ -104,8 +104,7 @@
       					  <h3><?php echo $message ?></h3>
       				    
       				    <?php if((count($team->players()) != 15) and $same_team){ ?>
-                  <h3>Add Player</h3>
-      					  <form style="height: 165px;" name="_form" action="<?php echo $_SERVER['php_self']?>" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');" enctype='multipart/form-data'>
+      					  <form style="margin-top:5px; height: 165px;" name="_form" action="<?php echo $_SERVER['php_self']?>" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');" enctype='multipart/form-data'>
                   	<table class="edit_table"> 
                   		<tr>
                   			<td>Name</td>
@@ -139,8 +138,6 @@
                   		</tr>
                   	</table>
                   </form>
-                  <?php }else{ ?>
-                  <a href="../teams/show.php?id=<?php echo $team->id?>"><img src="../../images/btn_back.gif" alt="indietro" /></a>          
                   <?php } ?>
 
                   <?php $index = 0 ?>
@@ -156,16 +153,20 @@
                           <a style="text-decoration:none;color:#3f250e;" href="show.php?id=<?php echo $player->id ?>"><?php echo $player->full_name() ?> </a>
                           <?php if($same_team){ ?>
                           <br/>
-                          <a href='delete.php?id=<?php echo $player->id ?>' onclick="confirm('Are you sure you want to delete this player?')">delete</a>
+                          <a href='delete.php?id=<?php echo $player->id ?>' onclick="return confirm('Are you sure you want to delete this player?')">delete</a>
                           <a href='edit.php?id=<?php echo $player->id ?>'>edit</a>
                           <?php } ?>
                         </div>
                         <div style="height:1px;clear:both;"></div>
                       </div>
       					    <?php }?>
-      					    
-      					    
     					    </div>
+    					    
+    					    <?php if(!$same_team){ ?>
+    					    <div style="height:20px;clear:both;"></div>
+                  <a style="float:right;" href="../teams/show.php?id=<?php echo $team->id?>"><img src="../../images/btn_back.gif" alt="indietro" /></a>          
+                  <?php } ?>
+    					    
       			    </div>
       			  </div>
       			  <div id="footer">

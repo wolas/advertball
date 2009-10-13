@@ -64,7 +64,7 @@
               		</tr>
               		<tr><td colspan="2">&nbsp;</td></tr>
               		<tr>
-            			  <td style="text-align:left"><a href="delete.php?id=<?php echo $player->id ?>" onclick="confirm('Are you sure you want to delete this player?');"><img src="../../images/btn_cancel.gif" /></a></td>
+            			  <td style="text-align:left"><a href="delete.php?id=<?php echo $player->id ?>" onclick="return confirm('Are you sure you want to delete this player?');"><img src="../../images/btn_cancel.gif" /></a></td>
               			<td style="text-align:right"><a href="edit.php?id=<?php echo $player->id ?>"><img src="../../images/btn_edit.gif" /></a></td>
               		</tr>
               		<?php } ?>
