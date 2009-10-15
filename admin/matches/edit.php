@@ -2,14 +2,20 @@
 	ob_start();
 	require_once("../../includes/initialize.php");
 
-  $match = new Match();
+  $match = Match::find_by_id($_GET['id']);
 	
 	if(isset($_POST['commit'])){
 		$match->team1_id = $_POST['team1_id'];
 		$match->team2_id = $_POST['team2_id'];
 		$match->location = $_POST['location'];
-    $match->date = date("Y-m-d", mktime(0, 0, 0, $_POST['month'], $_POST['day'], $_POST['year']));
+		$match->date = date("Y-m-d", mktime(0, 0, 0, $_POST['month'], $_POST['day'], $_POST['year']));
     $match->time = date("Y-m-d H:i:s", mktime($_POST['hour'], $_POST['minute'], 0, 0, 0, 0));    
+    $match->team1_goals = $_POST['team1_goals'];
+    $match->team1_reds = $_POST['team1_reds'];
+    $match->team1_yellows = $_POST['team1_yellows'];
+    $match->team2_goals = $_POST['team2_goals'];
+    $match->team2_reds = $_POST['team2_reds'];
+    $match->team2_yellows = $_POST['team2_yellows'];
 		
 		if($match->save()){
 		  redirect_to("show.php?id=" . $match->id);
@@ -17,6 +23,18 @@
 		  $message = "Unable to insert data";	  
 		}
 		
+	}
+	
+	function selected($format, $value)
+	{
+	  global $match;
+    if(strftime($format, strtotime($match->date)) == $value){return "selected=\"selected\" ";}
+	}
+	
+	function selected_time($format, $value)
+	{
+	  global $match;
+    if(strftime($format, strtotime($match->time)) == $value){return "selected=\"selected\" ";}
 	}
 
 ?>
@@ -41,6 +59,12 @@
         rules[0]='location|required';
         rules[1]='date|required';
         rules[2]='time|required';
+        rules[3]='team1_goals|required';
+        rules[4]='team1_reds|required';
+        rules[5]='team1_yellows|required';
+        rules[6]='team2_goals|required';
+        rules[7]='team2_reds|required';
+        rules[8]='team2_yellows|required';
     </script>
 </head>
 <body>
@@ -69,7 +93,7 @@
                 			<td>
                 			  <select id="team1_id" name="team1_id">
                 			    <?php foreach(Team::find_all() as $team){ ?>
-                          <option value="<?php echo $team->id ?>"><?php echo $team->name ?></option>
+                          <option <?php if($match->team1_id == $team->id){echo "selected=\"selected\"";}?> value="<?php echo $team->id ?>"><?php echo $team->name ?></option>
                           <?php } ?>
                         </select>
                 			</td>
@@ -80,7 +104,7 @@
                 			<td>
                 			  <select id="team2_id" name="team2_id">
                 			    <?php foreach(Team::find_all() as $team){ ?>
-                          <option value="<?php echo $team->id ?>"><?php echo $team->name ?></option>
+                          <option <?php if($match->team2_id == $team->id){echo "selected=\"selected\"";}?> value="<?php echo $team->id ?>"><?php echo $team->name ?></option>
                           <?php } ?>
                         </select>
                 			</td>
@@ -89,59 +113,31 @@
                 		<tr>
                 			<td>Date</td>
                 			<td>
+                			  
                 			  <select name="year" >
-                          <option value='2009'>2009</option>
-                          <option value='2010'>2010</option>
+                          <option <?php echo selected("%Y", "2009") ?>value='2009'>2009</option>
+                          <option <?php echo selected("%Y", "2010") ?>value='2010'>2010</option>
                         </select>
                 			  
                 			  <select name='month'>
-                			    <option value=''>Select Month</option>
-                          <option value='01'>January</option>
-                          <option value='02'>February</option>
-                          <option value='03'>March</option>
-                          <option value='04'>April</option>
-                          <option value='05'>May</option>
-                          <option value='06'>June</option>
-                          <option value='07'>July</option>
-                          <option value='08'>August</option>
-                          <option value='09'>September</option>
-                          <option value='10'>October</option>
-                          <option value='11'>November</option>
-                          <option value='12'>December</option>
+                          <option <?php echo selected("%m", "01") ?>value='01'>January</option>
+                          <option <?php echo selected("%m", "02") ?>value='02'>February</option>
+                          <option <?php echo selected("%m", "03") ?>value='03'>March</option>
+                          <option <?php echo selected("%m", "04") ?>value='04'>April</option>
+                          <option <?php echo selected("%m", "05") ?>value='05'>May</option>
+                          <option <?php echo selected("%m", "06") ?>value='06'>June</option>
+                          <option <?php echo selected("%m", "07") ?>value='07'>July</option>
+                          <option <?php echo selected("%m", "08") ?>value='08'>August</option>
+                          <option <?php echo selected("%m", "09") ?>value='09'>September</option>
+                          <option <?php echo selected("%m", "10") ?>value='10'>October</option>
+                          <option <?php echo selected("%m", "11") ?>value='11'>November</option>
+                          <option <?php echo selected("%m", "12") ?>value='12'>December</option>
                         </select>
 
                         <select name="day" >
-                          <option value='01'>01</option>
-                          <option value='02'>02</option>
-                          <option value='03'>03</option>
-                          <option value='04'>04</option>
-                          <option value='05'>05</option>
-                          <option value='06'>06</option>
-                          <option value='07'>07</option>
-                          <option value='08'>08</option>
-                          <option value='09'>09</option>
-                          <option value='10'>10</option>
-                          <option value='11'>11</option>
-                          <option value='12'>12</option>
-                          <option value='13'>13</option>
-                          <option value='14'>14</option>
-                          <option value='15'>15</option>
-                          <option value='16'>16</option>
-                          <option value='17'>17</option>
-                          <option value='18'>18</option>
-                          <option value='19'>19</option>
-                          <option value='20'>20</option>
-                          <option value='21'>21</option>
-                          <option value='22'>22</option>
-                          <option value='23'>23</option>
-                          <option value='24'>24</option>
-                          <option value='25'>25</option>
-                          <option value='26'>26</option>
-                          <option value='27'>27</option>
-                          <option value='28'>28</option>
-                          <option value='29'>29</option>
-                          <option value='30'>30</option>
-                          <option value='31'>31</option>
+                          <? for ($i = 1; $i <= 31; $i++){
+                            echo "<option " . selected("%d", $i ) . "value='$i'>$i</option>\n";
+                          } ?>
                         </select>
                 			</td>
                 		  <td><span id="errorsDiv_date"></span></td>
@@ -150,37 +146,16 @@
                 			<td>Time</td>
                 			<td>
                 			  <select name="hour" >
-                          <option value='01'>01</option>
-                          <option value='02'>02</option>
-                          <option value='03'>03</option>
-                          <option value='04'>04</option>
-                          <option value='05'>05</option>
-                          <option value='06'>06</option>
-                          <option value='07'>07</option>
-                          <option value='08'>08</option>
-                          <option value='09'>09</option>
-                          <option value='10'>10</option>
-                          <option value='11'>11</option>
-                          <option value='12'>12</option>
-                          <option value='13'>13</option>
-                          <option value='14'>14</option>
-                          <option value='15'>15</option>
-                          <option value='16'>16</option>
-                          <option value='17'>17</option>
-                          <option value='18'>18</option>
-                          <option value='19'>19</option>
-                          <option value='20'>20</option>
-                          <option value='21'>21</option>
-                          <option value='22'>22</option>
-                          <option value='23'>23</option>
-                          <option value='24'>24</option>
+                          <? for ($i = 1; $i <= 24; $i++){
+                            echo "<option " . selected_time("%H", $i ) . "value='$i'>$i</option>\n";
+                          } ?>
                         </select>
-                        
                         <select name="minute" >
-                          <option value='00'>00</option>
-                          <option value='15'>15</option>
-                          <option value='30'>30</option>
-                          <option value='45'>45</option>
+                          
+                          <option <?php echo selected_time("%M", "00") ?>value='00'>00</option>
+                          <option <?php echo selected_time("%M", "15") ?>value='15'>15</option>
+                          <option <?php echo selected_time("%M", "30") ?>value='30'>30</option>
+                          <option <?php echo selected_time("%M", "45") ?>value='45'>45</option>
                         </select>
                 			</td>
                 		  <td><span id="errorsDiv_time"></span></td>
@@ -190,11 +165,10 @@
                 			<td><input id="location" name="location" size="30" maxlength="30" type="text" value="<?php echo $match->location;?>"/></td>
                 		  <td><span id="errorsDiv_location"></span></td>
                 		</tr>
-                		<tr><td colspan="3" class="table_separator">&nbsp;</td></tr>
                 		<tr>
                 		  <td><a href="index.php"><img src="../../images/btn_back.gif" style="float:left"/></a></td>
                 			<td><input id="commit" name="commit" class="save" type="submit" value="" style="float:right"/></td>
-                      <td>&nbsp;</td>
+                		  <td>&nbsp;</td>
                 		</tr>
                 	</table>
                 </form>

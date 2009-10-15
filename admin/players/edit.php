@@ -65,7 +65,7 @@
       				<ul id="menu">
       					<li><a href="../agencies/index.php" class="menu_blank">Agencies</a></li>
       					<li><a href="../teams/index.php" class="menu_blank">Teams</a></li>
-      					<li><a href="../matches/index.php" class="menu_blank">Teams</a></li>
+      					<li><a href="../matches/index.php" class="menu_blank">Matches</a></li>
       				</ul>
       			</div>
       			<div id="ctndx">

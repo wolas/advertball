@@ -16,6 +16,48 @@ class Team extends DatabaseObject{
 	public $assistant_telephone;
 	public $assistant_email;	
 	
+	public function yellows()
+	{
+	  $reds = 0;
+    foreach($this->matches_as_1() as $match){$reds += $match->team1_yellows;}
+    foreach($this->matches_as_2() as $match){$reds += $match->team2_yellows;}
+    return $reds;
+	}
+	
+	public function reds()
+	{
+	  $reds = 0;
+    foreach($this->matches_as_1() as $match){$reds += $match->team1_reds;}
+    foreach($this->matches_as_2() as $match){$reds += $match->team2_reds;}
+    return $reds;
+	}
+	
+	public function goals()
+	{
+    $goals = 0;
+    foreach($this->matches_as_1() as $match){$goals += $match->team1_goals;}
+    foreach($this->matches_as_2() as $match){$goals += $match->team2_goals;}
+    return $goals;
+	}
+	
+	public function matches()
+	{
+	  $sql = "SELECT * FROM matches WHERE team1_id='$this->id' OR team2_id='$this->id'";
+    return Match::find_by_sql($sql);
+	}
+	
+	public function matches_as_1()
+	{
+	  $sql = "SELECT * FROM matches WHERE team1_id='$this->id'";
+    return Match::find_by_sql($sql);
+	}
+	
+	public function matches_as_2()
+	{
+	  $sql = "SELECT * FROM matches WHERE team2_id='$this->id'";
+    return Match::find_by_sql($sql);
+	}
+	
 	public function agency()
 	{
 	  return Agency::find_by_id($this->agency_id);

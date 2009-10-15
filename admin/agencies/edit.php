@@ -77,10 +77,9 @@
   			<div id="ctnsx">
   				<h1><a href="../index.html"><span>ADVERTBALL</span></a></h1>
   				<ul id="menu">
-  					<li><a href="../dashboard.php" class="menu_blank">Dashboard</a></li>
-  					<li><a href="index.php" class="menu_blank">Agencies</a></li>
+  					<li><a href="../agencies/index.php" class="menu_blank">Agencies</a></li>
   					<li><a href="../teams/index.php" class="menu_blank">Teams</a></li>
-  					<li><a href="../logout.php" class="menu_blank">Logout</a></li>
+  					<li><a href="../matches/index.php" class="menu_blank">Matches</a></li>
   				</ul>
   			</div>
   			<div id="ctndx">

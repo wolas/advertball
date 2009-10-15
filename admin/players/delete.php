@@ -1,9 +1,6 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
-?>
-
-<?php
   
   $player = Player::find_by_id($_GET['id']);
   $team = $player->team();

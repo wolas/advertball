@@ -30,9 +30,9 @@
   			<div id="ctnsx">
   				<h1><a href="../index.html"><span>ADVERTBALL</span></a></h1>
   				<ul id="menu">
-  					<li><a href="../dashboard.php" class="menu_blank">Dashboard</a></li>
   					<li><a href="../agencies/index.php" class="menu_blank">Agencies</a></li>
-  					<li><a href="index.php" class="menu_blank">Teams</a></li>
+  					<li><a href="../teams/index.php" class="menu_blank">Teams</a></li>
+  					<li><a href="../matches/index.php" class="menu_blank">Matches</a></li>
   				</ul>
   			</div>
   			<div id="ctndx">
@@ -44,54 +44,67 @@
   					  <div style="float:left; width:242px; padding-left: 22px;">
                 <img src="../../uploads/<?php echo $team->logo_url(); ?>" width="200px"/>
               </div>
-  					  <div style="float:left;">
-						    <table class="edit_table">
-              		<tr>
-              			<td>Colour 1</td>
-              			<td class="right_column"><?php echo $team->colour1;?></td>
-              		</tr>
-              		<tr>
-              			<td>Colour 2</td>
-              			<td class="right_column"><?php echo $team->colour2;?></td>
-              		</tr>
-              		<tr><td colspan="2">&nbsp;</td></tr>
-              		<tr>
-              			<td>Coach Name</td>
-              			<td class="right_column"><?php echo $team->coach_name;?></td>
-              		</tr>	
-              		<tr>
-              			<td>Coach Email</td>
-              			<td class="right_column"><?php echo $team->coach_email;?></td>
-              		</tr>
-              		<tr>
-              			<td>Contact Telephone</td>
-              			<td class="right_column"><?php echo $team->coach_telephone;?></td>
-              		</tr>
-              		<tr><td colspan="2">&nbsp;</td></tr>
-              		<tr>
-              			<td>Assistant Coach</td>
-              			<td class="right_column"><?php echo $team->assistant_name;?></td>
-              		</tr>	
-              		<tr>
-              			<td>Assistant Email</td>
-              			<td class="right_column"><?php echo $team->assistant_email;?></td>
-              		</tr>
-              		<tr>
-              			<td>Assistant Telephone</td>
-              			<td class="right_column"><?php echo $team->assistant_telephone;?></td>
-              		</tr>
-              		<tr><td colspan="2">&nbsp;</td></tr>
-              			<tr>
-                			<td style="text-align:left"><a href="../players/manage.php?id=<?php echo $team->id ?>"><img src="../../images/btn_manage_players.gif" /></a></td>
-                			<td style="text-align:left"><a href="edit.php?id=<?php echo $team->id ?>"><img src="../../images/btn_edit.gif" /></a></td>
-                		</tr>
-              	</table>
-              </div>
-						  <div style="height:1px; clear:both;"></div>
-  						<p class="last">&nbsp;</p>
+						  <table class="edit_table">
+            		<tr>
+            			<td>Colour 1</td>
+            			<td class="right_column"><?php echo $team->colour1;?></td>
+            		</tr>
+            		<tr>
+            			<td>Colour 2</td>
+            			<td class="right_column"><?php echo $team->colour2;?></td>
+            		</tr>
+            		<tr><td colspan="2">&nbsp;</td></tr>
+            		<tr>
+            			<td>Coach Name</td>
+            			<td class="right_column"><?php echo $team->coach_name;?></td>
+            		</tr>	
+            		<tr>
+            			<td>Coach Email</td>
+            			<td class="right_column"><?php echo $team->coach_email;?></td>
+            		</tr>
+            		<tr>
+            			<td>Contact Telephone</td>
+            			<td class="right_column"><?php echo $team->coach_telephone;?></td>
+            		</tr>
+            		<tr><td colspan="2">&nbsp;</td></tr>
+            		<tr>
+            			<td>Assistant Coach</td>
+            			<td class="right_column"><?php echo $team->assistant_name;?></td>
+            		</tr>	
+            		<tr>
+            			<td>Assistant Email</td>
+            			<td class="right_column"><?php echo $team->assistant_email;?></td>
+            		</tr>
+            		<tr>
+            			<td>Assistant Telephone</td>
+            			<td class="right_column"><?php echo $team->assistant_telephone;?></td>
+            		</tr>
+            		<tr><td colspan="2">&nbsp;</td></tr>
+            		<tr>
+            			<td>Matches</td>
+            			<td class="right_column"><?php echo count($team->matches());?></td>
+            		</tr>
+            		<tr>
+            			<td>Goals</td>
+            			<td class="right_column"><?php echo $team->goals();?></td>
+            		</tr>
+            		<tr>
+            			<td>Red Cards</td>
+            			<td class="right_column"><?php echo $team->reds();?></td>
+            		</tr>
+            		<tr>
+            			<td>Yellow Cards</td>
+            			<td class="right_column"><?php echo $team->yellows();?></td>
+            		</tr>
+            		<tr><td colspan="2">&nbsp;</td></tr>
+          			<tr>
+            			<td style="text-align:left"><a href="../players/manage.php?id=<?php echo $team->id ?>"><img src="../../images/btn_manage_players.gif" /></a></td>
+            			<td style="text-align:left"><a href="edit.php?id=<?php echo $team->id ?>"><img src="../../images/btn_edit.gif" /></a></td>
+            		</tr>
+            	</table>
   					</div>
   				</div>
-  				<div id="footer"><a href="logout.php">Logout</a></div>
+  				<div id="footer"><a href="logout.php">Logout</a> &bull; <a href="../../pages/teams/show.php?id=<?php echo $team->id ?>">Public site</a></div>
   			</div>
   		</div>
   	</td>

@@ -1,9 +1,11 @@
 /*Font*/
 body{font-size:12px;font-family:"Trebuchet MS",Verdana, Geneva, Arial, Helvetica, sans-serif;}
-#footer a{ font-size:10px;}
+#footer a{ font-size:10px; }
 #ctndx h2{font-size:20px;color:#3f250e;}
 #ctndx {font-size:11px;color:#323232;}
 #ctndx table{font-size:11px;color:#323232;}
+#ctndx a{color:#877c0c;text-decoration:none;}
+#ctndx a:hover{text-decoration:underline;}
 th{font-size:15px;color:#3f250e;border-bottom:1px solid #ccc;}
 
 
