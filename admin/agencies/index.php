@@ -87,7 +87,7 @@
                     <?php 
                 	    list($street, $city, $state, $cap) = explode("~", $agency->address);
                 	  ?>
-                    <td><?php echo $agency->company_name; ?></td>
+                    <td><a href="show.php?id=<?php echo $agency->id ?>"><?php echo $agency->company_name; ?></a></td>
                     <td><?php echo $street . '<br/> ' . $cap . ", " . $city . '<br/>' .  $state; ?></td>
                     <td><?php echo $agency->contact_name; ?></td>
                     <td><?php echo $agency->contact_email; ?></td>

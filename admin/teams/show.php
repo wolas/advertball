@@ -46,6 +46,11 @@
                 <img src="../../uploads/<?php echo $team->logo_url(); ?>" width="200px"/>
               </div>
 						  <table class="edit_table">
+        			  <tr>
+        				  <td>Agency</td>
+        				  <td class="right_column"><a href="../agencies/show.php?id=<?php echo $team->agency()->id; ?>" ><?php echo $team->agency()->company_name; ?></a></td>
+        			  </tr>
+        			  <tr><td colspan="2">&nbsp;</td></tr>
             		<tr>
             			<td>Colour 1</td>
             			<td class="right_column"><?php echo $team->colour1;?></td>
