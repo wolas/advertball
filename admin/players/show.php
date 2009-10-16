@@ -55,8 +55,16 @@
               			<td class="right_column"><a href="mailto:<?php echo $player->email ?>"><?php echo $player->email ?></a></td>
               		</tr>
               		<tr>
+              			<td>Number</td>
+              			<td class="right_column"><?php echo $player->number ?></td>
+              		</tr>
+              		<tr>
               			<td>Busta Paga</td>
-              			<td class="right_column"><a href="../../uploads/<?php echo $player->payslip_url() ?>">Download</a></td>
+              			<td class="right_column">
+              			  <?php if($player->payslip){ ?>
+              			  <a href="../../uploads/<?php echo $player->payslip_url() ?>">Download</a>
+              			  <?php }?>
+              			</td>
               		</tr>
               		<tr><td colspan="2">&nbsp;</td></tr>
               		<tr>

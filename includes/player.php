@@ -2,10 +2,11 @@
 
 class Player extends DatabaseObject{
 	protected static $table_name='players';
-	protected static $db_fields=array('id', 'team_id','name', 'surname', 'email',"photo","payslip");
+	protected static $db_fields=array('id', 'team_id','name', 'number', 'surname', 'email',"photo","payslip");
 	public $id;
 	public $team_id;
 	public $name;	
+	public $number;
 	public $surname;
 	public $email;
 	public $photo;

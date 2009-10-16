@@ -8,6 +8,7 @@
 
 	if(isset($_POST['commit'])){
 	  $player->name = $_POST['name'];
+	  $player->number = $_POST['number'];
 	  $player->surname = $_POST['surname'];
 	  $player->email = $_POST['email'];
 		
@@ -15,25 +16,25 @@
 		
 		if($_FILES['userfile']["name"][0] || $_FILES['userfile']["name"][1]){
   		/* upload files only when player is valid */
-  		$_files;
+  		$files = array();
   		$upload_dir = SITE_ROOT . DS . "uploads" . DS . "team_" . $team->id . DS;
   		mkdir($upload_dir);
-	
+	    
+	    
+	    
   		while(list($key,$value) = each($_FILES['userfile']['name'])){
   			if(!empty($value)){
   			  $extension = substr($value, strrpos($value, '.'));
   				$filename = "player_" . $player->id . "_" . $key . $extension;
-  				$_files .=	str_replace(" ","_",$filename) . ":";			
-  				$filename= $upload_dir . str_replace(" ","_",$filename);// replace blank space with '_'
+  				$files[$key]	= $filename;
+  				$filename = $upload_dir . str_replace(" ","_",$filename);// replace blank space with '_'
   				move_uploaded_file($_FILES['userfile']['tmp_name'][$key],$filename);
   			}
   		}
-  		//retrieve file uploaded file names
-  		list($_photo, $_payslip) = explode(":", $_files);
-		
+  		
   		//add file name to player fields
-  		$player->photo = $_photo;
-  		$player->payslip = $_payslip;
+  		if($files[0]){$player->photo = $files[0];}
+  		if($files[1]){$player->payslip = $files[1];}
   		$player->save(); // because we modified it
 		}
 		
@@ -81,6 +82,11 @@
                   		<tr>
                   			<td>Surname</td>
                   			<td><input id="surname" name="surname" size="15" maxlength="30" type="text" value="<?php echo $player->surname;?>"/></td>
+                  		</tr>
+                  		<tr>
+                  			<td>Number</td>
+                  			<td><input style="width:200px;" id="number" name="number" size="15" maxlength="30" type="text" value="<?php echo $player->number;?>"/></td>
+                  		  <td class="right_column"><span id="errorsDiv_number"></span></td>
                   		</tr>
                   		<tr>
                   			<td>Email</td>

@@ -8,6 +8,7 @@
   if(isset($_POST['commit'])){
 	  $player = new Player();
 	  $player->name = $_POST['name'];
+	  $player->number = $_POST['number'];
 	  $player->surname = $_POST['surname'];
 	  $player->email = $_POST['email'];
 	  $player->team_id = $team->id;
@@ -79,6 +80,7 @@
       rules[4]='payslip|required';
       rules[5]='photo|custom|check_photo()';
       rules[6]='payslip|custom|check_payslip()';
+      rules[7]='number|required';
     </script>
   </head>
   <body>
@@ -99,8 +101,8 @@
       			  <div id="scroll-container">
       					<div id="content">
       				    <?php if(count($team->players()) != 15){ ?>
-                  <div style="border:1px solid #cccccc; padding:5px;width: 300px;">
-        					  <form style="height: 160px;" name="_form" action="<?php echo $_SERVER['php_self']?>" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');" enctype='multipart/form-data'>
+                  <div style="border:1px solid #cccccc; padding:5px;width: 500px;">
+        					  <form style="height: 190px;" name="_form" action="<?php echo $_SERVER['php_self']?>" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');" enctype='multipart/form-data'>
                     	<table class="edit_table"> 
                     		<tr>
                     			<td>Name</td>
@@ -111,6 +113,11 @@
                     			<td>Surname</td>
                     			<td><input style="width:200px;" id="surname" name="surname" size="15" maxlength="30" type="text" value="<?php echo $player->surname;?>"/></td>
                     		  <td class="right_column"><span id="errorsDiv_surname"></span></td>
+                    		</tr>
+                    		<tr>
+                    			<td>Number</td>
+                    			<td><input style="width:200px;" id="number" name="number" size="15" maxlength="30" type="text" value="<?php echo $player->number;?>"/></td>
+                    		  <td class="right_column"><span id="errorsDiv_number"></span></td>
                     		</tr>
                     		<tr>
                     			<td>Email</td>
@@ -138,7 +145,7 @@
                   <?php } ?>
                   
                   <?php $index = 0 ?>
-  					      <div style="height:260px;">
+  					      <div style="height:240px;">
       					    <?php foreach ($team->players() as $player) {?>
       					      <?php $index += 1 ?>
                       <a href="show.php?id=<?php echo $player->id ?>">

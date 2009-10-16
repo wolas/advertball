@@ -56,19 +56,18 @@
   <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
 	<script src="../../js/yav.js"></script>
   <script src="../../js/yav-config.js"></script>
-    <script>
-        var rules=new Array();
-        rules[0]='name|required';
-        rules[1]='agency_id|required';
-        rules[2]='coach_name:coach name|required';
-        rules[3]='coach_email:coach email|required';
-        rules[4]='coach_email:coach email|email';
-        rules[5]='coach_telephone:coach telephone|required';
-        rules[6]='assistant_email:assistant email|email';
-        rules[7]='colour1|required';
-        rules[8]='colour2|required';
-        rules[9]='userfile:Logo|required';
-    </script>
+  <script>
+    var rules=new Array();
+    rules[0]='name|required';
+    rules[1]='agency_id|required';
+    rules[2]='coach_name:coach name|required';
+    rules[3]='coach_email:coach email|required';
+    rules[4]='coach_email:coach email|email';
+    rules[5]='coach_telephone:coach telephone|required';
+    rules[6]='assistant_email:assistant email|email';
+    rules[7]='colour1|required';
+    rules[8]='userfile:Logo|required';
+  </script>
 </head>
 <body>
   <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">

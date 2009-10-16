@@ -48,6 +48,14 @@ class Team extends DatabaseObject{
     return $goals;
 	}
 	
+	public function goals_received()
+	{
+    $goals = 0;
+    foreach($this->matches_as_1() as $match){$goals += $match->team2_goals;}
+    foreach($this->matches_as_2() as $match){$goals += $match->team1_goals;}
+    return $goals;
+	}
+	
 	public function matches()
 	{
 	  $sql = "SELECT * FROM matches WHERE team1_id='$this->id' OR team2_id='$this->id'";

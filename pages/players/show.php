@@ -53,6 +53,10 @@
               			<td>Team</td>
               			<td class="right_column"><a href="../teams/show.php?id=<?php echo $team->id ?>"><?php echo $player->team()->name ?></a></td>
               		</tr>
+              		<tr>
+              			<td>Number</td>
+              			<td class="right_column"><?php echo $player->number ?></td>
+              		</tr>
               		<?php if($same_team){ ?>
               		<tr>
               			<td>Email</td>

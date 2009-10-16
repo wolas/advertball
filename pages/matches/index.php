@@ -82,7 +82,7 @@
   							      ?>
   							    <tr>
   							      <?php ($index % 2) ? $style = "$style background-color:#c1bfa8" : $style = "$style background-color:#ebe9d5"; ?>
-  							      <td style="text-align: center; width:90px; <?php echo $style?>"><?php echo strftime("%Hh%m", strtotime($match->time))?></td>
+  							      <td style="text-align: center; width:90px; <?php echo $style?>"><?php echo strftime("%Hh%M", strtotime($match->time))?></td>
   							      <td style="text-align: right; width:220px; <?php echo $style?>"><?php echo $match->team1()->name ?></td>
   							      <td style="text-align: center; width:75px; <?php echo $style?>">
   							        <?php echo $match->team1_goals ?>
@@ -106,11 +106,13 @@
   							<div id="content2">
   							  <table cellspacing="0" cellpadding="0" style="border-left: 1px solid #877c0c; border-bottom: 1px solid #877c0c; ">
   							    <tr>
-  							      <?php $style = "style=\"height:40px;background-color:#877c0c; font-size:16px;\""?>
+  							      <?php $style = "style=\"height:40px;background-color:#877c0c; font-size:14px;\""?>
   							      <th <?php echo $style ?> >Agenzia</th>
-  							      <th <?php echo $style ?> >Goals</th>
   							      <th <?php echo $style ?> >Matches</th>
-  							      <th <?php echo $style ?> >Goals/Match</th>
+  							      <th <?php echo $style ?> >Goals Made</th>
+  							      <th <?php echo $style ?> >Goals Received</th>
+  							      <th <?php echo $style ?> >Goals made / Match</th>
+  							      <th <?php echo $style ?> >Goals rceived / Match</th>
   							      <th <?php echo $style ?> >Reds</th>
   							      <th <?php echo $style ?> >Yellows</th>
   							    </tr>
@@ -123,9 +125,11 @@
   							    <tr>
   							      <?php ($index % 2) ? $style = "$style background-color:#c1bfa8" : $style = "$style background-color:#ebe9d5"; ?>
   							      <td style="text-align: left; width:220px; <?php echo $style?>"><a href="../teams/show.php?id=<?php echo $team->id ?>"><?php echo $team->name?><a/></td>
-  							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo $team->goals() ?></td>
   							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo count($team->matches()) ?></td>
-  							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo $team->goals() / count($team->matches()) ?></td>
+  							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo $team->goals() ?></td>
+  							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo $team->goals_received() ?></td>
+  							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo round($team->goals() / count($team->matches()), 2) ?></td>
+  							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo round($team->goals_received() / count($team->matches()), 2) ?></td>
   							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo $team->reds() ?></td>
   							      <td style="text-align: center; width:75px; <?php echo $style?>"><?php echo $team->yellows() ?></td>
   							    </tr>
