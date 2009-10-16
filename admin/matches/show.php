@@ -1,6 +1,7 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
+	if(!$session->is_admin()){redirect_to("../session/login.php");}
 	
 	if(isset($_GET['id'])){
 	  $match = Match::find_by_id($_GET['id']);
@@ -99,7 +100,7 @@
   						<p class="last">&nbsp;</p>
   					</div>
   				</div>
-  				<div id="footer"><a href="logout.php">Logout</a> &bull; <a href="../../pages/matches/show.php?id=<? echo $match->id ?>">Public Site</a></div>
+  				<div id="footer"><a href="../session/logout.php">Logout</a> &bull; <a href="../../pages/matches/show.php?id=<? echo $match->id ?>">Public Site</a></div>
   			</div>
   		</div>
   	</td>

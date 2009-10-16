@@ -61,6 +61,7 @@
                 <div style="height:20px; clear:both;"></div>
                 <div style="padding-left: 20px;">
                   <h3>Statistics</h3>
+                  
                   <table class="edit_table">
                     <tr>
                 			<td>Matches</td>
@@ -141,8 +142,6 @@
               		<?php } ?>
               	</table>
               </div>
-						  <div style="height:1px; clear:both;"></div>
-  						<p class="last">&nbsp;</p>
   					</div>
   				</div>
   				<div id="footer">

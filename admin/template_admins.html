@@ -1,6 +1,7 @@
 <?php
   ob_start();
 	require_once("../../includes/initialize.php");
+	if(!$session->is_admin()){redirect_to("../session/login.php");}
 	
 	$matches = Match::find_all();
 ?>
@@ -41,7 +42,7 @@
   				
                 </div>
               </div>
-  					  <div id="footer"><a href="logout.php">Logout</a> &bull;<a href="../faq.html">Faq</a> &bull; <a href="contact.html">Contatti</a></div>
+  					  <div id="footer"><a href="../session/logout.php">Logout</a> &bull;<a href="../faq.html">Faq</a> &bull; <a href="contact.html">Contatti</a></div>
 			      </div>
 			    </div>			    
     	  </td>

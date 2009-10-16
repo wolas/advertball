@@ -1,6 +1,7 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
+	if(!$session->is_admin()){redirect_to("../session/login.php");}
 	
 	if(isset($_GET['id'])){
 	  $team = Team::find_by_id($_GET['id']);
@@ -104,22 +105,11 @@
             	</table>
   					</div>
   				</div>
-  				<div id="footer"><a href="logout.php">Logout</a> &bull; <a href="../../pages/teams/show.php?id=<?php echo $team->id ?>">Public site</a></div>
+  				<div id="footer"><a href="../session/logout.php">Logout</a> &bull; <a href="../../pages/teams/show.php?id=<?php echo $team->id ?>">Public site</a></div>
   			</div>
   		</div>
   	</td>
     </tr>
   </table>
-  <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    try {
-    var pageTracker = _gat._getTracker("UA-7408828-12");
-    pageTracker._trackPageview();
-    } catch(err) {}
-  </script>
-
   </body>
 </html>

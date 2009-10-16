@@ -1,11 +1,9 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
-	if(!$session->is_logged_in()){redirect_to("../session/login.php");}
+	if(!$session->is_admin()){redirect_to("../session/login.php");}
 	$agency = Agency::find_by_id($_GET['id']);
-?>
 
-<?php
 	if(isset($_POST['commit'])){
 		$address;
 		$address.=$_POST['street']."~";
@@ -25,7 +23,6 @@
 		$agency->contact_telephone  = $telephone;
 		$agency->partita_iva        = $_POST['partita_iva'];
 		$agency->amount_paid        = $_POST['amount_paid'];;
-		$agency->legal_term         = $_POST['legal_term'];
 		$agency->username           = $_POST['username'];
 		$agency->password = $_POST['password'];
 		$agency->save();
@@ -84,13 +81,11 @@
     				</ul>
     			</div>
     			<div id="ctndx">
-    			  <h2><img src="../../images/edit_team.gif" alt="Modifica Squadra" /></h2>
+    			  <h2>Modifica Agenzia</h2>
     			  <div id="scroll-container">
     					<div id="content">
-			          <h2>TITLE</h2>
-			
         				<form name="_form" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
-                	<table>
+                	<table class="edit_table">
                 		<tr>
                 			<td>Agency Name:</td>
                 			<td><input id="company_name" name="company_name" size="30" maxlength="30" type="text" value="<?php echo $agency->company_name;?>"/></td>
@@ -145,15 +140,10 @@
                 			<td><input id="partita_iva" name="partita_iva" size="30" maxlength="250" type="text" value="<?php echo $agency->partita_iva;?>" /></td>
                 		  <td><span id="errorsDiv_partita_iva"></span></td>
                 		</tr>
-
                 		<tr>
-            				<td>Total Paid:</td>
-            				<td><input id="amount_paid" name="amount_paid" size="30" maxlength="9" type="text" value="<?php echo $agency->amount_paid; ?>" /></td>
-            			</tr>
-            			<tr>
-                			<td valign="top">I agree to legal terms</td>
-                			<td><input type="checkbox" id="legal_term" name="legal_term" value="1" checked /></td>
-                		</tr>
+            				  <td>Total Paid:</td>
+            				  <td><input id="amount_paid" name="amount_paid" size="30" maxlength="9" type="text" value="<?php echo $agency->amount_paid; ?>" /></td>
+            			  </tr>
                 		<tr>
                 			<td>Username:</td>
                 			<td><input id="username" name="username" size="30" maxlength="12" type="text" value="<?php echo $agency->username;?>" />
@@ -166,15 +156,15 @@
                 		</tr>
                 		<tr>
                 			<td>&nbsp;</td>
-                			<td><input id="commit" name="commit" class="buttonstyle" type="submit" value="update" /></td>
+                			<td><input id="commit" name="commit" class="save" type="submit" value="" /></td>
                 		</tr>
                 	</table>
                 	<br/>
-                	<a href="index.php">Back</a>
+                	<a href="index.php"><img src="../../images/btn_back.gif" alt="Back" /></a>
                 </form>
     			    </div>
     			  </div>
-    			  <div id="footer"><a href="logout.php">Logout</a> &bull; <a href="../../pages/matches/index.php">Public Site</a></div>
+    			  <div id="footer"><a href="../session/logout.php">Logout</a></div>
     			</div>
     		</div>
     	</td>

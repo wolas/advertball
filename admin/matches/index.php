@@ -1,6 +1,7 @@
 <?php
   ob_start();
 	require_once("../../includes/initialize.php");
+	if(!$session->is_admin()){redirect_to("../session/login.php");}
 	
 	$matches = Match::find_by_sql("SELECT * FROM matches ORDER BY date ASC");
 ?>
@@ -87,7 +88,7 @@
   				        <p><a href="new.php">New</a></p>
                 </div>
               </div>
-  					  <div id="footer"><a href="logout.php">Logout</a> &bull; <a href="../../pages/matches/index.php">Public Site</a></div>
+  					  <div id="footer"><a href="../session/logout.php">Logout</a> &bull; <a href="../../pages/matches/index.php">Public Site</a></div>
 			      </div>
 			    </div>			    
     	  </td>

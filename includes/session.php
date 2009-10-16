@@ -5,28 +5,31 @@
 	 */
    class Session{
    		private $logged_in;
+   		private $admin;
 		  public $message;
 		  public $agency_id;
+		  public $admin_id;
 		  public $team_id;
 		
    		function __construct(){
    			session_start();
 			  $this->check_message();
   			$this->check_login();
-  			if($this->logged_in){
-  				}else{
-  			}
+  			$this->check_admin();
      	}
      	
      	public function save_team_id($team){
-     	  if($team){
-  				$this->team_id = $_SESSION['team_id'] = $team->id;
-  			}
+     	  if($team){$this->team_id = $_SESSION['team_id'] = $team->id;}
      	}
 		
 		  //return logged_in
   		public function is_logged_in(){
   			return $this->logged_in;
+  		}
+  		
+  		//return logged_in
+  		public function is_admin(){
+  			return $this->admin == true;
   		}
 		
   		//change login status
@@ -37,13 +40,23 @@
   				$this->logged_in = true;
   			}
   		}
+  		
+  		//change login status for admins
+  		public function admin_login($admin){
+  		  if($admin){
+  				$this->admin_id = $_SESSION['admin_id'] = $admin->id;
+  				$this->admin = true;
+  			}
+  		}
 		
   		//logout
   		public function logout(){
   			// check DB if inputted username/password
   			unset($_SESSION['agency_id']);
-  			unset($this->agency_id);
-  			$this->logged_in= false;
+  			unset($_SESSION['team_id']);
+  			unset($_SESSION['admin_id']);
+  			$this->logged_in = false;
+  			$this->admin = false;
   		}
 		
 		
@@ -55,6 +68,17 @@
   				}else{
   				unset($this->agency_id);
   				$this->logged_in = false;	
+  			}
+  		}
+  		
+  		//varify session status
+  		private function check_admin(){
+  			if(isset($_SESSION['admin_id'])){
+  				$this->admin_id = $_SESSION['admin_id'];
+  				$this->admin = true;
+  				}else{
+  				unset($this->admin_id);
+  				$this->admin = false;	
   			}
   		}
 		

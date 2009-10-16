@@ -2,27 +2,20 @@
 	require_once("../../includes/initialize.php");
 	
 	//forward if already logged in
-	if($session->is_logged_in()){
-		redirect_to("../dashboard.php");
-	}
+	if($session->is_admin()){redirect_to("../index.php");}
 	
 	//if form submitted
 	if(isset($_POST['submit'])){
-		$username = trim($_POST['username']);
-		$password = trim($_POST['password']);
-		
-	//$administrator=new Administrator();
-	
 		//check DB if submitted username /password exists
-		$administrator=Administrator::authenticate($username,$password);
+		$administrator=Administrator::authenticate(trim($_POST['username']), trim($_POST['password']));
 		
 		if($administrator){
-			$session->login($administrator);
-			redirect_to("dashboard.php");
-			}else{
-			//username/password not found
-			$message = "Username/Password incorrect!";
-		}
+
+			$session->admin_login($administrator);
+			redirect_to("../index.php");
+		
+		}else{$message = "Username/Password incorrect!";}
+	
 	}else{//form has't been submitted  
 		$username = '';
 		$password = '';
@@ -31,7 +24,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Advertball - Edit player</title>
+    <title>Advertball - Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="Content-Language" content="it"/>
     <meta name="script" http-equiv="Content-Script-Type" content="text/javascript"/>
@@ -57,9 +50,10 @@
       				</ul>
       			</div>
       			<div id="ctndx">
-      			  <h2>Login to CMS</h2>
+      			  <h2><img src="../../images/login.gif" alt="Login" /></h2>
               <div id="scroll-container">
       					<div id="content">
+      					  <?php echo $message ?>
         					<form class="center_table" action="login.php" method="post">
               		  <table class="edit_table">
               		    <tr>
@@ -77,23 +71,12 @@
               		</form>
                 </div>
               </div>
-  					  <div id="footer"><a href="../faq.html">Faq</a> &bull; <a href="contact.html">Contatti</a></div>
+  					  <div id="footer"><a href="../../pages/session/login.php">Public Site</a></div>
 			      </div>
 			    </div>			    
     	  </td>
       </tr>
     </table>
-    <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      </script>
-      <script type="text/javascript">
-      try {
-      var pageTracker = _gat._getTracker("UA-7408828-12");
-      pageTracker._trackPageview();
-      } catch(err) {}
-    </script>
-
   </body>
 </html>
 <?php if(isset($database)) { $database->close_connection(); } ?>

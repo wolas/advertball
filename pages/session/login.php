@@ -52,7 +52,7 @@
       				<ul id="menu">
       					<li><a href="../about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
       					<li><a href="../rules.html" class="menu2"><span>Regolamento</span></a></li>
-      					<li><a href="index.php" class="menu3on"><span>Squadre</span></a></li>
+      					<li><a href="../teams/index.php" class="menu3on"><span>Squadre</span></a></li>
       					<li><a href="../programme.html" class="menu4"><span>Programma</span></a></li>
       					<li><a href="../sponsors.html" class="menu6"><span>Spondor</span></a></li>
       				</ul>

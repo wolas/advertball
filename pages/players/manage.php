@@ -1,8 +1,6 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
-	if(!$session->is_logged_in()){redirect_to("login.php");}
-  
   
   $team = Team::find_by_id($_GET['id']);
   if($session->is_logged_in()){$same_team = (Agency::find_by_id($session->agency_id)->team() == $team);}

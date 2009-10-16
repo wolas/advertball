@@ -1,7 +1,7 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
-	if(!$session->is_logged_in()){redirect_to("../session/login.php");}
+	if(!$session->is_admin()){redirect_to("../session/login.php");}
 
   $team = Team::find_by_id($_GET['id']);
   
@@ -166,7 +166,7 @@
     					    </div>
       			    </div>
       			  </div>
-      			  <div id="footer"><a href="logout.php">Logout</a> &bull;<a href="../../pages/players/manage.php">Public Site</a></div>
+      			  <div id="footer"><a href="../session/logout.php">Logout</a> &bull; <a href="../../pages/players/manage.php?id=<?php echo $team->id ?>">Public Site</a></div>
       			</div>
       		</div>
     	  </td>
