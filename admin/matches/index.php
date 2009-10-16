@@ -40,7 +40,6 @@
   				        <table width="100%">
   				          <tr>
   				            <th>Date</th>
-  				            <th>Location</th>
   				            <th>Team 1</th>
   				            <th>Team 2</th>
   				            <th>&nbsp;</th>
@@ -52,7 +51,6 @@
   				              -
   				              <?php echo strftime("%H:%M", strtotime($match->time)) ?>
   				            </td>
-  				            <td><?php echo $match->location ?></td>
   				            <td>
   				              <a href="../teams/show.php?id=<?php echo $match->team1()->id ?>"><?php echo $match->team1()->name ?></a>
   				              <br/>

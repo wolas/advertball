@@ -1,7 +1,6 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php if (!$session->is_logged_in()) { redirect_to("../login.php"); } ?>
-
-<?php 
+<?php
+  require_once("../../includes/initialize.php");
+  if (!$session->is_logged_in()) { redirect_to("../login.php"); } 
 
   //1. the current page number($current_page)
   $page=!empty($_GET['page']) ? (int) $_GET['page'] : 1;

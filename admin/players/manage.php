@@ -1,7 +1,7 @@
 <?php 
 	ob_start();
 	require_once("../../includes/initialize.php");
-	if(!$session->is_logged_in()){redirect_to("login.php");}
+	if(!$session->is_logged_in()){redirect_to("../session/login.php");}
 
   $team = Team::find_by_id($_GET['id']);
   

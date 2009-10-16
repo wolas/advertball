@@ -61,6 +61,7 @@ a.menu6on{display:block; width:173px; height:30px; background:url(../images/menu
 
 /*Scroll*/
 #scroll-container {position: relative;height: 495px; width:665px; margin:25px 0 0 90px;}
+#scroll-container-small {position: relative;height: 400px; width:665px; margin:25px 0 0 90px;}
 #content{position: absolute;top: 0;left: 0; width: 605px;overflow: hidden;}
 #content p.last{ padding-bottom:50px}
 #track {position: absolute;	left: 635px;top: 6px;width: 8px;height: 418px;background:url(../images/back_scroll.gif) 0 0 repeat-y;}
@@ -68,13 +69,20 @@ a.menu6on{display:block; width:173px; height:30px; background:url(../images/menu
 #button-up {position: absolute;top: 0;left: 635px;width: 8px;height: 6px; background:url(../images/top_scroll.gif) 0 0 no-repeat;}
 #button-down {position: absolute;top: 424px;left: 635px;width: 8px;height: 6px; background:url(../images/bottom_scroll.gif) 0 0 no-repeat;}
 
-#scroll-container2 {position: relative;height: 425px; width:665px; margin:25px 0 0 90px;}
 #content2{position: absolute;top: 0;left: 0; width: 605px;overflow: hidden;}
 #content2 p.last{ padding-bottom:50px}
 #track2 {position: absolute;	left: 635px;top: 6px;width: 8px;height: 418px;background:url(../images/back_scroll.gif) 0 0 repeat-y;}
 #handle2 {position: absolute;left: 0;top: 0;width: 8px;height: 37px;background:url(../images/scroll.gif) 0 0 no-repeat;}
 #button-up2 {position: absolute;top: 0;left: 635px;width: 8px;height: 6px; background:url(../images/top_scroll.gif) 0 0 no-repeat;}
 #button-down2 {position: absolute;top: 424px;left: 635px;width: 8px;height: 6px; background:url(../images/bottom_scroll.gif) 0 0 no-repeat;}
+
+#content3{position: absolute;top: 0;left: 0; width: 605px;overflow: hidden;}
+#content3 p.last{ padding-bottom:50px}
+#track3 {position: absolute;	left: 635px;top: 6px;width: 8px;height: 418px;background:url(../images/back_scroll.gif) 0 0 repeat-y;}
+#handle3 {position: absolute;left: 0;top: 0;width: 8px;height: 37px;background:url(../images/scroll.gif) 0 0 no-repeat;}
+#button-up3 {position: absolute;top: 0;left: 635px;width: 8px;height: 6px; background:url(../images/top_scroll.gif) 0 0 no-repeat;}
+#button-down3 {position: absolute;top: 424px;left: 635px;width: 8px;height: 6px; background:url(../images/bottom_scroll.gif) 0 0 no-repeat;}
+
 
 /*Content*/
 #ctndx h2{margin:20px 0 20px 0}
@@ -114,10 +122,20 @@ p{ margin-bottom:10px;}
 #menutab{margin:60px 0 0 0; padding:0; float:right; list-style-type:none;height: 40px; width:290px;}
 #menutab li{margin:0; padding:0; float:right;}
 #menutab li a span{ display:none;}
+#menutab2{margin:60px 0 0 0; padding:0; float:right; list-style-type:none;height: 40px; width:450px;}
+#menutab2 li{margin:0; padding:0; float:right;}
+#menutab2 li a span{ display:none;}
 #tab1.on{ width:138px; height:40px; background: url(../images/generale.gif) 0 0 no-repeat; display:block;}
 #tab2.on{ width:120px; height:40px; background: url(../images/tecnico.gif) 0 0 no-repeat; display:block;}
+#tab3.on{ width:124px; height:40px; background: url(../images/tab_results.gif) 0 0 no-repeat; display:block;}
+#tab4.on{ width:131px; height:40px; background: url(../images/tab_stats.gif) 0 0 no-repeat; display:block;}
+#tab5.on{ width:131px; height:40px; background: url(../images/tab_ranking.gif) 0 0 no-repeat; display:block;}
+
 #tab1.off{ width:138px; height:40px; background: url(../images/generale_off.gif) 0 0 no-repeat; display:block;}
 #tab2.off{ width:120px; height:40px; background: url(../images/tecnico_off.gif) 0 0 no-repeat; display:block;}
+#tab3.off{ width:124px; height:40px; background: url(../images/tab_results_off.gif) 0 0 no-repeat; display:block;}
+#tab4.off{ width:131px; height:40px; background: url(../images/tab_stats_off.gif) 0 0 no-repeat; display:block;}
+#tab5.off{ width:131px; height:40px; background: url(../images/tab_ranking_off.gif) 0 0 no-repeat; display:block;}
 
 img.regolamento{ margin:-3px 0 0 90px}
 
@@ -126,6 +144,12 @@ img.regolamento{ margin:-3px 0 0 90px}
 #texttab1 p{margin:0; padding:0;}
 #texttab2 {position:absolute;top:0;left:0; visibility: hidden;}
 #texttab2 p{margin:0; padding:0;}
+#texttab3 {position:absolute;top:0;left:0; visibility: hidden;}
+#texttab3 p{margin:0; padding:0;}
+#texttab4 {position:absolute;top:0;left:0; visibility: hidden;}
+#texttab4 p{margin:0; padding:0;}
+#texttab5 {position:absolute;top:0;left:0; visibility: visible;}
+#texttab5 p{margin:0; padding:0;}
 
 
 .player_widget{text-decoration:none; float:left; margin: 10px 0 0px 15px; width:180px;}

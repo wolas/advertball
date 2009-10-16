@@ -19,48 +19,46 @@ function showTab1()
 {
 	MM_showHideLayers('texttab1','','show');
 	MM_showHideLayers('texttab2','','hide');
-	MM_showHideLayers('texttab3','','hide');
-	MM_showHideLayers('texttab4','','hide');
 	document.getElementById("tab1").className='on';
 	document.getElementById("tab2").className='off';
-	document.getElementById("tab3").className='off';
-	document.getElementById("tab4").className='off';
 }
 
 function showTab2()
 {
 	MM_showHideLayers('texttab1','','hide');
 	MM_showHideLayers('texttab2','','show');
-	MM_showHideLayers('texttab3','','hide');
-	MM_showHideLayers('texttab4','','hide');
 	document.getElementById("tab1").className='off';
 	document.getElementById("tab2").className='on';
-	document.getElementById("tab3").className='off';
-	document.getElementById("tab4").className='off';
 }
 
 function showTab3()
 {
-	MM_showHideLayers('texttab1','','hide');
-	MM_showHideLayers('texttab2','','hide');
 	MM_showHideLayers('texttab3','','show');
 	MM_showHideLayers('texttab4','','hide');
-	document.getElementById("tab1").className='off';
-	document.getElementById("tab2").className='off';
+	MM_showHideLayers('texttab5','','hide');
 	document.getElementById("tab3").className='on';
 	document.getElementById("tab4").className='off';
+	document.getElementById("tab5").className='off';
 }
 
 function showTab4()
 {
-	MM_showHideLayers('texttab1','','hide');
-	MM_showHideLayers('texttab2','','hide');
 	MM_showHideLayers('texttab3','','hide');
 	MM_showHideLayers('texttab4','','show');
-	document.getElementById("tab1").className='off';
-	document.getElementById("tab2").className='off';
+	MM_showHideLayers('texttab5','','hide');
 	document.getElementById("tab3").className='off';
 	document.getElementById("tab4").className='on';
+	document.getElementById("tab5").className='off';
+}
+
+function showTab5()
+{
+	MM_showHideLayers('texttab3','','hide');
+	MM_showHideLayers('texttab4','','hide');
+	MM_showHideLayers('texttab5','','show');
+	document.getElementById("tab3").className='off';
+	document.getElementById("tab4").className='off';
+	document.getElementById("tab5").className='on';
 }
 
 // Show Hide layer

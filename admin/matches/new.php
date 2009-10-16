@@ -7,7 +7,6 @@
 	if(isset($_POST['commit'])){
 		$match->team1_id = $_POST['team1_id'];
 		$match->team2_id = $_POST['team2_id'];
-		$match->location = $_POST['location'];
     $match->date = date("Y-m-d", mktime(0, 0, 0, $_POST['month'], $_POST['day'], $_POST['year']));
     $match->time = date("Y-m-d H:i:s", mktime($_POST['hour'], $_POST['minute'], 0, 0, 0, 0));    
 		
@@ -37,10 +36,23 @@
 	<script src="../../js/yav.js"></script>
   <script src="../../js/yav-config.js"></script>
     <script>
-        var rules=new Array();
-        rules[0]='location|required';
-        rules[1]='date|required';
-        rules[2]='time|required';
+
+      function check_teams() {
+        var msg;
+        var reg_1 = new RegExp("^[+][0-9]\\d{2}-\\d{3}-\\d{4}$");
+        if ( document.forms[0].team1_id.value ==  document.forms[0].team2_id.value) {
+    		  msg = "Both teams cannot be the same";
+      	} else {
+      	    msg = null;
+      	}
+      	return msg;
+      }
+    
+      var rules=new Array();
+      rules[0]='time|required';
+      rules[1]='date|required';
+      rules[2]='team1_id|custom|check_teams()';
+      rules[3]='team2_id|custom|check_teams()';
     </script>
 </head>
 <body>
@@ -73,7 +85,7 @@
                           <?php } ?>
                         </select>
                 			</td>
-                		  <td>&nbsp;</td>
+                		  <td><span id="errorsDiv_team1_id"></span></td>
                 		</tr>
                 		<tr>
                 			<td>Team 2</td>
@@ -84,7 +96,7 @@
                           <?php } ?>
                         </select>
                 			</td>
-                		  <td>&nbsp;</td>
+                		  <td><span id="errorsDiv_team2_id"></span></td>
                 		</tr>
                 		<tr>
                 			<td>Date</td>
@@ -95,7 +107,6 @@
                         </select>
                 			  
                 			  <select name='month'>
-                			    <option value=''>Select Month</option>
                           <option value='01'>January</option>
                           <option value='02'>February</option>
                           <option value='03'>March</option>
@@ -170,25 +181,20 @@
                           <option value='18'>18</option>
                           <option value='19'>19</option>
                           <option value='20'>20</option>
-                          <option value='21'>21</option>
+                          <option selected="selected" value='21'>21</option>
                           <option value='22'>22</option>
                           <option value='23'>23</option>
                           <option value='24'>24</option>
                         </select>
                         
                         <select name="minute" >
-                          <option value='00'>00</option>
+                          <option selected="selected" value='00'>00</option>
                           <option value='15'>15</option>
                           <option value='30'>30</option>
                           <option value='45'>45</option>
                         </select>
                 			</td>
                 		  <td><span id="errorsDiv_time"></span></td>
-                		</tr>
-                		<tr>
-                			<td>Location</td>
-                			<td><input id="location" name="location" size="30" maxlength="30" type="text" value="<?php echo $match->location;?>"/></td>
-                		  <td><span id="errorsDiv_location"></span></td>
                 		</tr>
                 		<tr><td colspan="3" class="table_separator">&nbsp;</td></tr>
                 		<tr>

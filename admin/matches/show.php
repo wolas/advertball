@@ -48,10 +48,6 @@
             			<td>Time</td>
             			<td class="right_column"><?php echo strftime("%H:%M", strtotime($match->time)) ?></td>
             		</tr>
-            		<tr>
-            			<td>Location</td>
-            			<td class="right_column"><?php echo $match->location ?></td>
-            		</tr>
             		<tr><td colspan="2">&nbsp;</td></tr>
             	</table>
               

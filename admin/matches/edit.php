@@ -7,7 +7,6 @@
 	if(isset($_POST['commit'])){
 		$match->team1_id = $_POST['team1_id'];
 		$match->team2_id = $_POST['team2_id'];
-		$match->location = $_POST['location'];
 		$match->date = date("Y-m-d", mktime(0, 0, 0, $_POST['month'], $_POST['day'], $_POST['year']));
     $match->time = date("Y-m-d H:i:s", mktime($_POST['hour'], $_POST['minute'], 0, 0, 0, 0));    
     $match->team1_goals = $_POST['team1_goals'];
@@ -56,7 +55,7 @@
   <script src="../../js/yav-config.js"></script>
     <script>
         var rules=new Array();
-        rules[0]='location|required';
+        rules[0]='team2_yellows|required';
         rules[1]='date|required';
         rules[2]='time|required';
         rules[3]='team1_goals|required';
@@ -64,7 +63,6 @@
         rules[5]='team1_yellows|required';
         rules[6]='team2_goals|required';
         rules[7]='team2_reds|required';
-        rules[8]='team2_yellows|required';
     </script>
 </head>
 <body>
@@ -159,11 +157,6 @@
                         </select>
                 			</td>
                 		  <td><span id="errorsDiv_time"></span></td>
-                		</tr>
-                		<tr>
-                			<td>Location</td>
-                			<td><input id="location" name="location" size="30" maxlength="30" type="text" value="<?php echo $match->location;?>"/></td>
-                		  <td><span id="errorsDiv_location"></span></td>
                 		</tr>
                 		<tr>
                 		  <td><a href="index.php"><img src="../../images/btn_back.gif" style="float:left"/></a></td>

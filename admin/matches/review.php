@@ -51,15 +51,12 @@
   <script src="../../js/yav-config.js"></script>
     <script>
         var rules=new Array();
-        rules[0]='location|required';
-        rules[1]='date|required';
-        rules[2]='time|required';
+        rules[0]='team2_goals:goasl|required';
+        rules[1]='team2_reds:red cards|required';
+        rules[2]='team2_yellows:yellow cards|required';
         rules[3]='team1_goals:goals|required';
         rules[4]='team1_reds:red cards|required';
         rules[5]='team1_yellows:yellow cards|required';
-        rules[6]='team2_goals:goasl|required';
-        rules[7]='team2_reds:red cards|required';
-        rules[8]='team2_yellows:yellow cards|required';
     </script>
 </head>
 <body>

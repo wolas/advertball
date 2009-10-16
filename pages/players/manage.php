@@ -40,7 +40,7 @@
 		$player->payslip = $_payslip;
 		$player->save(); // because we modified it
 
-		redirect_to("manage.php");
+		redirect_to("manage.php?id=$team->id");
 	}
 ?>
 

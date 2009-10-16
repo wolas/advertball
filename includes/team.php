@@ -16,6 +16,14 @@ class Team extends DatabaseObject{
 	public $assistant_telephone;
 	public $assistant_email;	
 	
+	public function points()
+	{
+	  $points = 0;
+	  foreach($this->matches_won() as $match){$points += 3;}
+	  foreach($this->matches_draw() as $match){$points += 1;}
+	  return $points;
+	}
+	
 	public function yellows()
 	{
 	  $reds = 0;
@@ -44,6 +52,30 @@ class Team extends DatabaseObject{
 	{
 	  $sql = "SELECT * FROM matches WHERE team1_id='$this->id' OR team2_id='$this->id'";
     return Match::find_by_sql($sql);
+	}
+	
+	public function matches_won()
+	{
+	  $matches = array();
+	  foreach($this->matches_as_1() as $match ){if($match->team1_goals > $match->team2_goals){$matches[] = $match;}}
+	  foreach($this->matches_as_2() as $match ){if($match->team2_goals > $match->team1_goals){$matches[] = $match;}}
+	  return $matches;
+	}
+	
+	public function matches_draw()
+	{
+	  $matches = array();
+	  foreach($this->matches_as_1() as $match ){if($match->team1_goals == $match->team2_goals){$matches[] = $match;}}
+	  foreach($this->matches_as_2() as $match ){if($match->team2_goals == $match->team1_goals){$matches[] = $match;}}
+	  return $matches;
+	}
+	
+	public function matches_lost()
+	{
+	  $matches = array();
+	  foreach($this->matches_as_1() as $match ){if($match->team1_goals < $match->team2_goals){$matches[] = $match;}}
+	  foreach($this->matches_as_2() as $match ){if($match->team2_goals < $match->team1_goals){$matches[] = $match;}}
+	  return $matches;
 	}
 	
 	public function matches_as_1()
