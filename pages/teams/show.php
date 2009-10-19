@@ -60,30 +60,10 @@
                 <img src="../../uploads/<?php echo $team->logo_url(); ?>" width="200px"/>
                 <div style="height:20px; clear:both;"></div>
                 <div style="padding-left: 20px;">
-                  <h3>Statistics</h3>
+                  
                   
                   <table class="edit_table">
-                    <tr>
-                			<td>Matches</td>
-                			<td class="right_column">
-                			  <?php echo count($team->matches())?>: 
-                			  <?php echo count($team->matches_won())?>(won)
-                			  <?php echo count($team->matches_lost())?>(lost)
-                			  <?php echo count($team->matches_draw())?>(draw)
-                			</td>
-                		</tr>
-                		<tr>
-                			<td>Goals</td>
-                			<td class="right_column"><?php echo $team->goals();?></td>
-                		</tr>
-                		<tr>
-                			<td>Red Cards</td>
-                			<td class="right_column"><?php echo $team->reds();?></td>
-                		</tr>
-                		<tr>
-                			<td>Yellow Cards</td>
-                			<td class="right_column"><?php echo $team->yellows();?></td>
-                		</tr>
+                    
                   </table>
                 </div>
               </div>
@@ -102,7 +82,7 @@
               			<td class="right_column"><?php echo $team->colour2;?></td>
               		</tr>
               		<tr><td colspan="2">&nbsp;</td></tr>
-              		<?php if($same_team){?>
+              		<?php if($same_team){ ?>
               		<tr>
               			<td>Coach Name</td>
               			<td class="right_column"><?php echo $team->coach_name;?></td>
@@ -129,6 +109,31 @@
               			<td class="right_column"><?php echo $team->assistant_telephone;?></td>
               		</tr>
               		<tr><td colspan="2">&nbsp;</td></tr>
+              		<?php } ?>
+              		<tr><td colspan="2" style="text-align:left;"><h3>Statistics</h3></td></tr>
+              		<tr>
+              			<td>Matches</td>
+              			<td class="right_column">
+              			  <?php echo count($team->matches())?>: 
+              			  <?php echo count($team->matches_won())?>(won)
+              			  <?php echo count($team->matches_lost())?>(lost)
+              			  <?php echo count($team->matches_draw())?>(draw)
+              			</td>
+              		</tr>
+              		<tr>
+              			<td>Goals</td>
+              			<td class="right_column"><?php echo $team->goals();?></td>
+              		</tr>
+              		<tr>
+              			<td>Red Cards</td>
+              			<td class="right_column"><?php echo $team->reds();?></td>
+              		</tr>
+              		<tr>
+              			<td>Yellow Cards</td>
+              			<td class="right_column"><?php echo $team->yellows();?></td>
+              		</tr>
+              		<tr><td colspan="2">&nbsp;</td></tr>
+              		<?php if($same_team){ ?>
               		<tr>
               			<td style="text-align:left"><a href="../players/manage.php?id=<?php echo $team->id ?>"><img src="../../images/btn_manage_players.gif" /></a></td>
               			<td style="text-align:left"><a href="edit.php"><img src="../../images/btn_edit.gif" /></a></td>
@@ -137,7 +142,7 @@
               		
             		  <tr>
           			    <td>&nbsp;</td>
-              			<td style="text-align:left"><a href="../players/manage.php?id=<?php echo $team->id ?>"><img src="../../images/btn_manage_players.gif" /></a></td>
+              			<td style="text-align:left"><a href="../players/manage.php?id=<?php echo $team->id ?>"><img src="../../images/<?php if($same_team){echo "btn_manage_players";}else{ echo "btn_players";} ?>.gif" /></a></td>
               		</tr>
               		<?php } ?>
               	</table>
