@@ -12,6 +12,7 @@
     $match->team2_goals = $_POST['team2_goals'];
     $match->team2_reds = $_POST['team2_reds'];
     $match->team2_yellows = $_POST['team2_yellows'];
+    $match->published = 1;
 		
 		if($match->save()){
 		  redirect_to("show.php?id=" . $match->id);

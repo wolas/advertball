@@ -77,11 +77,14 @@
     			<div id="ctnsx">
     				<h1><a href="../../index.html"><span>ADVERTBALL</span></a></h1>
     				<ul id="menu">
-    					<li><a href="../about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
-    					<li><a href="../rules.html" class="menu2"><span>Regolamento</span></a></li>
-    					<li><a href="index.php" class="menu3on"><span>Squadre</span></a></li>
-    					<li><a href="../programme.html" class="menu4"><span>Programma</span></a></li>
-    					<li><a href="../sponsors.html" class="menu6"><span>Spondor</span></a></li>
+    					<li><a href="../static/about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
+    					<li><a href="../static/programme.html" class="menu4"><span>Programma</span></a></li>
+    					<li><a href="../teams/index.php" class="menu3on"><span>Squadre</span></a></li>
+    					<li><a href="../matches/index.php" class="menu8"><span>Partite</span></a></li>
+    					<li><a href="../static/rules.html" class="menu2"><span>Regolamento</span></a></li>
+    					<li><a href="../static/prizes.html" class="menu5"><span>Premi</span></a></li>
+    					<li><a href="../register/index.html" class="menu7"><span>Iscrizione</span></a></li>
+    					<li><a href="../static/sponsors.html" class="menu6"><span>Credits</span></a></li>
     				</ul>
     			</div>
     			<div id="ctndx">
@@ -92,17 +95,17 @@
       					<form style="padding: 40px 0 0 0px;" name="_form" enctype="multipart/form-data" action="<?php echo $_SERVER['php_self']?>" id="_form" method="post" onSubmit="return yav.performCheck('_form', rules, 'inline');">
                 	<table class="edit_table">
                 		<tr>
-                			<td>Name:</td>
+                			<td>Nome:</td>
                 			<td><input id="name" name="name" size="30" maxlength="30" type="text" value="<?php echo $team->name;?>"/></td>
                 		  <td class="right_column"><span id="errorsDiv_name"></span></td>
                 		</tr>
                 		<tr>
-                			<td>Colour 1:</td>
+                			<td>Colore prima divisa:</td>
                 			<td><input id="colour1" name="colour1" size="30" maxlength="30" type="text" value="<?php echo $team->colour1;?>"/></td>
                 		  <td class="right_column"><span id="errorsDiv_colour1"></span></td>
                 		</tr>
                 		<tr>
-                			<td>Colour 2:</td>
+                			<td>Colore seconda divisa:</td>
                 			<td><input id="colour2" name="colour2" size="30" maxlength="30" type="text" value="<?php echo $team->colour2;?>"/></td>
                 		  <td class="right_column"><span id="errorsDiv_colour2"></span></td>
                 		</tr>

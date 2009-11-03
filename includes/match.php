@@ -2,7 +2,7 @@
 
 class Match extends DatabaseObject{
 	protected static $table_name='matches';
-	protected static $db_fields=array('id','published', 'team1_id','team2_id','date','time','team1_goals','team2_goals','team1_reds','team2_reds','team1_yellows','team2_yellows');
+	protected static $db_fields=array('id','published', 'team1_id','team2_id','date','time','team1_goals','team2_goals','team1_reds','team2_reds','team1_yellows','team2_yellows', 'notes');
 	public $id;
 	public $published;
 	public $team1_id;
@@ -15,6 +15,7 @@ class Match extends DatabaseObject{
 	public $team2_reds;
 	public $team1_yellows;
 	public $team2_yellows;
+	public $notes;
 	
 	public function team1()
 	{

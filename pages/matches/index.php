@@ -3,6 +3,7 @@
 	require_once("../../includes/initialize.php");
 	$matches = Match::find_by_sql("SELECT * FROM matches ORDER BY date ASC");
 	$teams = Team::find_all();
+	setlocale(LC_TIME, "it_IT");
 
 	function sort_points($a, $b) {
       if ($a->points() == $b->points()){return 0;}
@@ -47,14 +48,17 @@
   				<h1><a href="../../index.html"><span>ADVERTBALL</span></a></h1>
   				<ul id="menu">
   					<li><a href="../static/about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
-  					<li><a href="../static/rules.html" class="menu2"><span>Regolamento</span></a></li>
-  					<li><a href="../teams/index.php" class="menu3"><span>Squadre</span></a></li>
   					<li><a href="../static/programme.html" class="menu4"><span>Programma</span></a></li>
-  					<li><a href="../static/sponsors.html" class="menu6"><span>Spondor</span></a></li>
+  					<li><a href="../teams/index.php" class="menu3"><span>Squadre</span></a></li>
+  					<li><a href="../matches/index.php" class="menu8on"><span>Partite</span></a></li>
+  					<li><a href="../static/rules.html" class="menu2"><span>Regolamento</span></a></li>
+  					<li><a href="../static/prizes.html" class="menu5"><span>Premi</span></a></li>
+  					<li><a href="../register/index.html" class="menu7"><span>Iscrizione</span></a></li>
+  					<li><a href="../static/sponsors.html" class="menu6"><span>Credits</span></a></li>
   				</ul>
   			</div>
   			<div id="ctndx">
-  				<h2 class="sx"><img src="../../images/regolamento.gif" alt="regolamento" /></h2>
+  				<h2 class="sx"><img src="../../images/partite.gif" alt="partite" /></h2>
   				<ul id="menutab2">
   					<li><a href="#1" class="off" id="tab3" onclick="showTab3();showBox('3');hideBox('4', '5');"><span>Resultati</span></a></li>
   					<li><a href="#1" class="off" id="tab4" onclick="showTab4();showBox('4');hideBox('3', '5');"><span>Generale</span></a></li>
@@ -73,24 +77,32 @@
   							    <?php foreach($matches as $match){ ?>
   							      
   							      <?php if(strtotime($day) != strtotime($match->date)){?>
-  							      <tr><th colspan="4" style="padding-left: 20px;text-align:left;height:30px;background-color:#877c0c; font-size:14px;" ><?php echo strftime("%A %d %B %Y", strtotime($match->date)) ?></th></tr>
-  							      <?php $day = $match->date ?>
+  		  					      <tr><th colspan="4" style="padding-left: 20px;text-align:left;height:30px;background-color:#877c0c; font-size:14px;" ><?php echo strftime("%A %d %B %Y", strtotime($match->date)) ?></th></tr>
+    							      <?php $day = $match->date ?>
   							      <?php } ?>
+  							      
   							      <?php 
   							        $index +=1;  
   							        $style = "border-right:1px solid #877c0c; color:#3f250e; font-size:14px; font-weight:bold; height:35px; padding:5px 10px 5px 10px;"
   							      ?>
   							    <tr>
-  							      <?php ($index % 2) ? $style = "$style background-color:#c1bfa8" : $style = "$style background-color:#ebe9d5"; ?>
+  							      <?php ($index % 2) ? $style = "$style background-color:#c1bfa8;" : $style = "$style background-color:#ebe9d5;"; ?>
   							      <td style="text-align: center; width:90px; <?php echo $style?>"><?php echo strftime("%Hh%M", strtotime($match->time))?></td>
   							      <td style="text-align: right; width:220px; <?php echo $style?>"><?php echo $match->team1()->name ?></td>
   							      <td style="text-align: center; width:75px; <?php echo $style?>">
-  							        <?php echo $match->team1_goals ?>
-  							        -
-  							        <?php echo $match->team2_goals ?>
+  							        <?php if($match->published){ ?>
+  							          <?php echo $match->team1_goals ?>
+    							        -
+    							        <?php echo $match->team2_goals ?>
+    							      <?php }else{ echo "N/D";} ?>
   							      </td>
   							      <td style="text-align: left; width:220px; <?php echo $style?>"><?php echo $match->team2()->name ?></td>
   							    </tr>
+  							    
+  							    <?php if($match->notes){ ?>
+  							      <tr><td colspan="4" style="<?php echo $style ?>padding-left:20px;text-align:left;height:30px;font-size:10px;"> * <?php echo $match->notes ?></td></tr>
+  							    <?php } ?>
+  							    
   							    <?php } ?>
   							  </table>
   								<p class="last">&nbsp;</p>
@@ -107,14 +119,14 @@
   							  <table cellspacing="0" cellpadding="0" style="border-left: 1px solid #877c0c; border-bottom: 1px solid #877c0c; ">
   							    <tr>
   							      <?php $style = "style=\"height:40px;background-color:#877c0c; font-size:14px;\""?>
-  							      <th <?php echo $style ?> >Agenzia</th>
-  							      <th <?php echo $style ?> >Matches</th>
-  							      <th <?php echo $style ?> >Goals Made</th>
-  							      <th <?php echo $style ?> >Goals Received</th>
-  							      <th <?php echo $style ?> >Goals made / Match</th>
-  							      <th <?php echo $style ?> >Goals rceived / Match</th>
-  							      <th <?php echo $style ?> >Reds</th>
-  							      <th <?php echo $style ?> >Yellows</th>
+  							      <th <?php echo $style ?> >Squadra</th>
+  							      <th <?php echo $style ?> >Partite Giocate</th>
+  							      <th <?php echo $style ?> >Gol fatti</th>
+  							      <th <?php echo $style ?> >Gol subiti</th>
+  							      <th <?php echo $style ?> >Media Gol fatti</th>
+  							      <th <?php echo $style ?> >Media gol subiti</th>
+  							      <th <?php echo $style ?> >Espulsioni</th>
+  							      <th <?php echo $style ?> >Ammonizioni</th>
   							    </tr>
   							    <?php $index = 0 ?>
   							    <?php foreach($teams as $team){ ?>
@@ -150,12 +162,12 @@
   							    <tr>
   							      <?php $style = "style=\"height:40px;background-color:#877c0c; font-size:16px;\""?>
   							      <th <?php echo $style ?> >Rank</th>
-  							      <th <?php echo $style ?> >Agenzia</th>
-  							      <th <?php echo $style ?> >Points</th>
-  							      <th <?php echo $style ?> >Played</th>
-  							      <th <?php echo $style ?> >Wins</th>
-  							      <th <?php echo $style ?> >Loss</th>
-  							      <th <?php echo $style ?> >Draw</th>
+  							      <th <?php echo $style ?> >Squadra</th>
+  							      <th <?php echo $style ?> >Punti</th>
+  							      <th <?php echo $style ?> >Giocate</th>
+  							      <th <?php echo $style ?> >Vittorie</th>
+  							      <th <?php echo $style ?> >Sconfitte</th>
+  							      <th <?php echo $style ?> >Pareggi</th>
   							    </tr>
   							    <?php $index = 0 ?>
   							    <?php foreach($teams as $team){ ?>
@@ -181,7 +193,10 @@
   					</div>
   					
   				</div>
-  				<div id="footer"><a href="faq.html">Faq</a> &bull; <a href="contact.html">Contatti</a></div>
+  				<div id="footer">
+  			    <?php if($session->is_logged_in()){?><a href="../session/logout.php">Logout</a> &bull; <?php }else{?><a href="../session/login.php">Login</a> &bull; <?php }?>
+    			  <a href="../static/faq.html">Faq</a> &bull; <a href="../static/contact.html">Contatti</a>
+  			  </div>
   			</div>
   		</div>
   	</td>

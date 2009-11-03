@@ -10,6 +10,7 @@
 		$match->team2_id = $_POST['team2_id'];
     $match->date = date("Y-m-d", mktime(0, 0, 0, $_POST['month'], $_POST['day'], $_POST['year']));
     $match->time = date("Y-m-d H:i:s", mktime($_POST['hour'], $_POST['minute'], 0, 0, 0, 0));    
+		$match->notes = $_POST['notes'];
 		
 		if($match->save()){
 		  redirect_to("show.php?id=" . $match->id);
@@ -198,6 +199,13 @@
                 		  <td><span id="errorsDiv_time"></span></td>
                 		</tr>
                 		<tr><td colspan="3" class="table_separator">&nbsp;</td></tr>
+                		<tr>
+                			<td>Notes</td>
+                			<td>
+                			  <textarea id="notes" name="notes" rows="2" cols="30"  ></textarea>
+                			</td>
+                		  <td><span id="errorsDiv_notes_id"></span></td>
+                		</tr>
                 		<tr>
                 		  <td><a href="index.php"><img src="../../images/btn_back.gif" style="float:left"/></a></td>
                 			<td><input id="commit" name="commit" class="save" type="submit" value="" style="float:right"/></td>

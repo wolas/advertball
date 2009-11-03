@@ -4,7 +4,7 @@
   //1. the current page number($current_page)
   $page=!empty($_GET['page']) ? (int) $_GET['page'] : 1;
   //2. records per page($per_page)
-  $per_page=8;
+  $per_page=5;
   //3. total record count($total_count)
   $total_count = Agency::count_all();
   //all records -
@@ -78,7 +78,8 @@
                 	  <th>Tel</th>
                 	  <th>p I.V.A.</th>
                 	  <th>Amount Paid</th>
-                	  <th>Accepted<br/>Terms</th>
+                	  <th>Username</th>
+                	  <th>Password</th>
                 	  <th>&nbsp;</th>
                   </tr>
 
@@ -94,7 +95,8 @@
                     <td><?php echo $agency->contact_telephone; ?></td>
                     <td><?php echo $agency->partita_iva; ?></td>
                     <td style="text-align:center;"><?php echo $agency->amount_paid; ?></td>
-                    <td style="text-align:center;"><?php echo $agency->legal_term==1 ? "yes" : "no" ?></td>
+                    <td><?php echo $agency->username; ?></td>
+                    <td><?php echo $agency->password; ?></td>
                 	  <td>
                 	    <a href="edit.php?id=<?php echo $agency->id;?>">edit</a> 
                 	    <br/>

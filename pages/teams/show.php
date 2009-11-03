@@ -44,10 +44,13 @@
   				<h1><a href="../../index.html"><span>ADVERTBALL</span></a></h1>
   				<ul id="menu">
   					<li><a href="../static/about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
-  					<li><a href="../static/rules.html" class="menu2"><span>Regolamento</span></a></li>
-  					<li><a href="index.php" class="menu3on"><span>Squadre</span></a></li>
   					<li><a href="../static/programme.html" class="menu4"><span>Programma</span></a></li>
-  					<li><a href="../static/sponsors.html" class="menu6"><span>Spondor</span></a></li>
+  					<li><a href="../teams/index.php" class="menu3on"><span>Squadre</span></a></li>
+  					<li><a href="../matches/index.php" class="menu8"><span>Partite</span></a></li>
+  					<li><a href="../static/rules.html" class="menu2"><span>Regolamento</span></a></li>
+  					<li><a href="../static/prizes.html" class="menu5"><span>Premi</span></a></li>
+  					<li><a href="../register/index.html" class="menu7"><span>Iscrizione</span></a></li>
+  					<li><a href="../static/sponsors.html" class="menu6"><span>Credits</span></a></li>
   				</ul>
   			</div>
   			<div id="ctndx">
@@ -70,66 +73,73 @@
   					  <div style="float:left;">
 						    <table class="edit_table">
               		<tr>
-              			<td>Agency</td>
+              			<td>Societ&agrave;</td>
               			<td class="right_column"><?php echo $team->agency()->company_name;?></td>
               		</tr>
               		<tr>
-              			<td>Colour 1</td>
+              			<td>Colore 1</td>
               			<td class="right_column"><?php echo $team->colour1;?></td>
               		</tr>
               		<tr>
-              			<td>Colour 2</td>
+              			<td>Colore 2</td>
               			<td class="right_column"><?php echo $team->colour2;?></td>
               		</tr>
               		<tr><td colspan="2">&nbsp;</td></tr>
               		<?php if($same_team){ ?>
               		<tr>
-              			<td>Coach Name</td>
+              			<td>Allenatore</td>
               			<td class="right_column"><?php echo $team->coach_name;?></td>
               		</tr>	
               		<tr>
-              			<td>Coach Email</td>
+              			<td>Email Allenatore</td>
               			<td class="right_column"><?php echo $team->coach_email;?></td>
               		</tr>
               		<tr>
-              			<td>Contact Telephone</td>
+              			<td>Telefono Allenatore</td>
               			<td class="right_column"><?php echo $team->coach_telephone;?></td>
               		</tr>
               		<tr><td colspan="2">&nbsp;</td></tr>
               		<tr>
-              			<td>Assistant Coach</td>
+              			<td>Dirigente</td>
               			<td class="right_column"><?php echo $team->assistant_name;?></td>
               		</tr>	
               		<tr>
-              			<td>Assistant Email</td>
+              			<td>Email Dirigente</td>
               			<td class="right_column"><?php echo $team->assistant_email;?></td>
               		</tr>
               		<tr>
-              			<td>Assistant Telephone</td>
+              			<td>Telefono Dirigente</td>
               			<td class="right_column"><?php echo $team->assistant_telephone;?></td>
               		</tr>
               		<tr><td colspan="2">&nbsp;</td></tr>
               		<?php } ?>
-              		<tr><td colspan="2" style="text-align:left;"><h3>Statistics</h3></td></tr>
+              		<tr><td colspan="2" style="text-align:left;"><h3>Statistiche</h3></td></tr>
               		<tr>
-              			<td>Matches</td>
+              			<td>Partite</td>
               			<td class="right_column">
-              			  <?php echo count($team->matches())?>: 
-              			  <?php echo count($team->matches_won())?>(won)
-              			  <?php echo count($team->matches_lost())?>(lost)
-              			  <?php echo count($team->matches_draw())?>(draw)
+              			  <?php echo count($team->matches())?> giocate
+              			  <br/> 
+              			  <?php echo count($team->matches_won())?> vinte
+              			  <br>
+              			  <?php echo count($team->matches_lost())?> perse
+              			  <br/>
+              			  <?php echo count($team->matches_draw())?> pareggiate
               			</td>
               		</tr>
               		<tr>
-              			<td>Goals</td>
-              			<td class="right_column"><?php echo $team->goals();?></td>
+              			<td>Gol</td>
+              			<td class="right_column">
+              			  <?php echo $team->goals();?> (Fatti), 
+              			  <?php echo $team->goals_received();?> (Subiti)
+              			  
+              			</td>
               		</tr>
               		<tr>
-              			<td>Red Cards</td>
+              			<td>Espulsioni</td>
               			<td class="right_column"><?php echo $team->reds();?></td>
               		</tr>
               		<tr>
-              			<td>Yellow Cards</td>
+              			<td>Ammonizioni</td>
               			<td class="right_column"><?php echo $team->yellows();?></td>
               		</tr>
               		<tr><td colspan="2">&nbsp;</td></tr>

@@ -72,12 +72,6 @@
   				              |
   				              <a href="edit.php?id=<?php echo $match->id ?>">Edit</a>
   				              |
-  				              <?php if($match->published){ ?>
-  				              Published
-  				              <? }else{ ?>
-  				              <a href="publish.php?published=true&amp;id=<?php echo $match->id ?>" onclick="return confirm('Are you sure you want to publish?? This will send emails to all players');">Publish</a>  				              
-  				              <?php }?>
-  				              |
   				              <a href="review.php?id=<?php echo $match->id ?>">Review</a>
   				              |
   				              <a href="delete.php?id=<?php echo $match->id ?>">Delete</a>

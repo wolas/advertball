@@ -16,6 +16,7 @@
     $match->team2_goals = $_POST['team2_goals'];
     $match->team2_reds = $_POST['team2_reds'];
     $match->team2_yellows = $_POST['team2_yellows'];
+    $match->notes = $_POST['notes'];
 		
 		if($match->save()){
 		  redirect_to("show.php?id=" . $match->id);
@@ -158,6 +159,13 @@
                         </select>
                 			</td>
                 		  <td><span id="errorsDiv_time"></span></td>
+                		</tr>
+                		<tr>
+                			<td>Notes</td>
+                			<td>
+                			  <textarea id="notes" name="notes" rows="2" cols="30" ><?php echo $match->notes ?></textarea>
+                			</td>
+                		  <td><span id="errorsDiv_notes_id"></span></td>
                 		</tr>
                 		<tr>
                 		  <td><a href="index.php"><img src="../../images/btn_back.gif" style="float:left"/></a></td>

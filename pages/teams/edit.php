@@ -75,10 +75,13 @@
     				<h1><a href="../../index.html"><span>ADVERTBALL</span></a></h1>
     				<ul id="menu">
     					<li><a href="../static/about.html" class="menu1"><span>Che cos'&egrave; Advertball</span></a></li>
-    					<li><a href="../static/rules.html" class="menu2"><span>Regolamento</span></a></li>
-    					<li><a href="index.php" class="menu3on"><span>Squadre</span></a></li>
     					<li><a href="../static/programme.html" class="menu4"><span>Programma</span></a></li>
-    					<li><a href="../static/sponsors.html" class="menu6"><span>Spondor</span></a></li>
+    					<li><a href="../teams/index.php" class="menu3on"><span>Squadre</span></a></li>
+    					<li><a href="../matches/index.php" class="menu8"><span>Partite</span></a></li>
+    					<li><a href="../static/rules.html" class="menu2"><span>Regolamento</span></a></li>
+    					<li><a href="../static/prizes.html" class="menu5"><span>Premi</span></a></li>
+    					<li><a href="../register/index.html" class="menu7"><span>Iscrizione</span></a></li>
+    					<li><a href="../static/sponsors.html" class="menu6"><span>Credits</span></a></li>
     				</ul>
     			</div>
     			<div id="ctndx">
